@@ -1,0 +1,101 @@
+server:
+  port: 8080
+  compression:
+    enabled: true
+  session:
+    cookie:
+      http-only: true
+  tomcat:
+    remote-ip-header: X-Forwarded-For
+    protocol-header: X-Forwarded-Proto
+
+logging:
+  file: logs/application.log
+  level:
+    root: WARN
+    com.gildata: INFO
+
+info:
+  build:
+    artifact: "@project.artifactId@"
+    name: "@project.name@"
+    description: "@project.description@"
+    version: "@project.version@"
+
+spring:
+  profiles:
+    active: "@spring.profiles.active@"
+  jackson:
+    serialization:
+      indent-output: true
+      write-dates-as-timestamps: false
+  datasource:
+    url: jdbc:mysql://localhost:3306/demo?characterEncoding=utf8&autoReconnect=true&useSSL=false
+    username: demo
+    password: demo
+    max-active: 100
+    max-idle: 20
+    min-idle: 20
+    initial-size: 50
+    max-wait: 60000
+    validation-query: SELECT 1
+    test-on-borrow: true
+    test-on-return: false
+    test-while-idle: true
+    time-between-eviction-runs-millis: 60000
+    min-evictable-idle-time-millis: 300000
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    database: MYSQL
+    open-in-view: false
+    show-sql: false
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+      use-new-id-generator-mappings: true
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+  http:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 100MB
+      file-size-threshold: 0
+  messages:
+    basename: i18n/messages
+  mvc:
+    locale: zh_CN
+    date-format: yyyy-MM-dd
+    favicon:
+      enabled: false
+  thymeleaf:
+    mode: XHTML
+    cache: true
+  h2:
+    console:
+      enabled: false
+  mail:
+    host: localhost
+    port: 25
+    username: luhg@gildata.com
+    password:
+security:
+  basic:
+    enabled: false
+management:
+  security:
+    enabled: false
+  context-path: /management
+
+application:
+  work:
+    directory: work
+  mail:
+    from: luhg@gildata.com
+    baes-url: http://my-server-url-to-change
+  security:
+    authentication:
+      jwt:
+        secret: my-secret-token-to-change-in-production
+        token-validity-in-seconds: 86400
+        token-validity-in-seconds-for-remember-me: 2592000
