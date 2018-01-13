@@ -41,7 +41,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
         if (account) {
           let authed: boolean = authService.hasAnyAuthorityDirect(authorities);
           if (!authed) {
-            this.router.navigate(['access-denied']);
+            this.router.navigate(['forbidden']);
           }
           return authed;
         }

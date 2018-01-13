@@ -114,8 +114,8 @@ export class MenuService implements OnDestroy {
       pos = (pos !== -1 ? pos : -1) + 1;
       this.data[0].children.splice(pos, 0, {
         text: '快捷菜单',
-        translate: 'shortcut',
-        icon: 'icon-rocket',
+        i18n: 'menu.shortcut',
+        icon: 'anticon anticon-rocket',
         children: []
       });
     }

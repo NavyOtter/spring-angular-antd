@@ -32,6 +32,7 @@
     "ng-zorro-antd": "^0.6.10",
     "ngx-webstorage": "^2.0.1",
     "rxjs": "^5.5.6",
+    "viser-ng": "^2.0.1",
     "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.20"
   },

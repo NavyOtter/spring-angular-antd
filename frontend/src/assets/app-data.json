@@ -33,7 +33,7 @@
           "text": "个人信息",
           "i18n": "menu.profile",
           "link": "/profile",
-          "icon": "anticon anticon-user"
+          "icon": "anticon anticon-idcard"
         },
         {
           "text": "修改密码",
@@ -55,7 +55,39 @@
           "icon": "anticon anticon-team"
         }
       ]
+    },
+    {
+      "text": "其它",
+      "group": true,
+      "children": [
+        {
+          "text": "测试",
+          "link": "/test",
+          "icon": "anticon anticon-tool",
+          "shortcut": true
+        },
+        {
+          "text": "错误页",
+          "icon": "anticon anticon-file",
+          "children": [
+            {
+              "text": "500",
+              "link": "/error",
+              "reuse": false
+            },
+            {
+              "text": "403",
+              "link": "/forbidden",
+              "reuse": false
+            },
+            {
+              "text": "404",
+              "link": "/not-found",
+              "reuse": false
+            }
+          ]
+        }
+      ]
     }
-
   ]
 }

@@ -6,6 +6,9 @@ import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
 import { AuthGuard } from './core/auth/auth.guard';
 
 import { LayoutComponent } from './layout/layout.component';
+import { ForbiddenComponent } from './page/forbidden/forbidden.component';
+import { NotFoundComponent } from './page/not-found/not-found.component';
+import { ErrorComponent } from './page/error/error.component';
 
 export const routes: Routes = [
   {
@@ -30,7 +33,27 @@ export const routes: Routes = [
       //     authorities: ['ROLE_ADMIN']
       //   }
       // }
+            {
+        path: 'test',
+        loadChildren: 'app/test/test.module#TestModule',
+        // canLoad: [AuthGuard],
+        data: {
+          // authorities: ['ROLE_ADMIN']
+        }
+      }
     ]
+  },
+  {
+    path: 'forbidden',
+    component: ForbiddenComponent
+  },
+  {
+    path: 'error',
+    component: ErrorComponent
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 

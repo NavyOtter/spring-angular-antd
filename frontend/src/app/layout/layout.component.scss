@@ -75,7 +75,7 @@ body {
 }
 
 // Desktop
-@media (min-width: $screen-sm-max) {
+@media (min-width: $screen-sm-min) {
   .content {
     margin-left: ($aside-wd + $content-padding);
   }
