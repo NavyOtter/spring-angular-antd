@@ -1,17 +1,4 @@
-@import 'src/styles/variables';
-
-// $content-padding: 24px;
-// $header-hg: 64px;
-// $content-heading-bg: #fafbfc;
-// $content-heading-border: #efe3e5;
-// $content-bg: #f5f7fa;
-// $text-color: fade(#000, 65%);
-// $muted-color: #8c8c8c;
-// $aside-wd: 200px;
-// $screen-md-max: 1199px;
-// $screen-sm-max: 992px;
-// $aside-collapsed-wd: 64px;
-// $zindex: 9;
+@import "src/styles/variables";
 
 html {
   direction: ltr;
@@ -48,13 +35,13 @@ body {
   overflow-x: hidden;
 
   .unwrap {
-      margin-right: -$content-padding;
-      margin-left: -$content-padding;
+    margin-right: -$content-padding;
+    margin-left: -$content-padding;
 
-      @media (max-width: $screen-md-max) {
-          margin-right: 0;
-          margin-left: 0;
-      }
+    @media (max-width: $screen-md-max) {
+      margin-right: 0;
+      margin-left: 0;
+    }
   }
 }
 
@@ -76,29 +63,29 @@ body {
   background-color: $content-heading-bg;
   border-bottom: 1px solid $content-heading-border;
   > h1 {
-      font-size: 18px;
-      font-weight: normal;
-      line-height: inherit;
-      > small {
-          display: block;
-          font-size: 12px;
-          color: $muted-color;
-      }
+    font-size: 18px;
+    font-weight: normal;
+    line-height: inherit;
+    > small {
+      display: block;
+      font-size: 12px;
+      color: $muted-color;
+    }
   }
 }
 
 // Desktop
 @media (min-width: $screen-sm-max) {
   .content {
-      margin-left: ($aside-wd + $content-padding);
+    margin-left: ($aside-wd + $content-padding);
   }
 
   .aside-collapsed {
-      .sidebar {
-          width: $aside-collapsed-wd;
-      }
-      .content {
-          margin-left: ($aside-collapsed-wd + $content-padding);
-      }
+    .sidebar {
+      width: $aside-collapsed-wd;
+    }
+    .content {
+      margin-left: ($aside-collapsed-wd + $content-padding);
+    }
   }
 }
