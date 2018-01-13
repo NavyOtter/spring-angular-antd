@@ -12,8 +12,8 @@ export class I18NService {
   private _default = 'zh-CN';
 
   private _langs = [
-      { code: 'en', text: 'English' },
-      { code: 'zh-CN', text: '中文' }
+      { code: 'zh-CN', text: '简体中文' },
+      { code: 'en', text: 'English' }
   ];
 
   constructor(

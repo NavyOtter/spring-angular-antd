@@ -29,7 +29,6 @@
     "@ngx-translate/http-loader": "^2.0.1",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.4.1",
-    "font-awesome": "^4.7.0",
     "ng-zorro-antd": "^0.6.10",
     "ngx-webstorage": "^2.0.1",
     "rxjs": "^5.5.6",

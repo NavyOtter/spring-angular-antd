@@ -1,10 +1,14 @@
 {
-  "home": "主页",
-  "settings": "设置",
-  "profile": "个人资料",
-  "login": "登录",
-  "logout": "登出",
-  "language": "语言",
-  "shortcut": "快捷菜单",
-  "dashboard": "仪表盘"
+  "menu": {
+    "main": "主菜单",
+    "dashboard": "仪表盘",
+    "shortcut": "快捷菜单",
+    "account": "账户设置",
+    "profile": "个人信息",
+    "password": "修改密码",
+    "system": "系统管理",
+    "users": "用户管理"
+  }
+
+
 }

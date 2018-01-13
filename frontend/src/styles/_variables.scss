@@ -1,0 +1,201 @@
+// Base Scaffolding Variables
+// ---
+
+// Background color for `<body>`
+$body-background        : #fff;
+// Base background color for most components
+$component-background   : #fff;
+$font-family-no-number  : -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family            : "Helvetica Neue For Number", $font-family-no-number;
+$code-family            : Consolas, Menlo, Courier, monospace;
+$heading-color          : rgba(0, 0, 0, 0.85);
+$text-color             : rgba(0, 0, 0, 0.65);
+$text-color-secondary   : rgba(0, 0, 0, 0.43);
+$heading-color-dark     : rgba(255, 255, 255, 0.97);
+$text-color-dark        : rgba(255, 255, 255, 0.91);
+$text-color-secondary-dark: rgba(255, 255, 255, 0.67);
+$font-size-base         : 12px;
+$font-size-lg           : $font-size-base + 2px;
+$line-height-base       : 1.5;
+$border-radius-base     : 4px;
+$border-radius-sm       : 2px;
+
+// -------- Colors -----------
+$primary-color          : #1890ff;
+$info-color             : #1890ff;
+$success-color          : #52c41a;
+$error-color            : #f5222d;
+$highlight-color        : #f5222d;
+$warning-color          : #fadb14;
+$normal-color           : #d9d9d9;
+
+// z-index list
+$zindex-affix           : 10;
+$zindex-back-top        : 10;
+$zindex-modal-mask      : 1000;
+$zindex-modal           : 1000;
+$zindex-notification    : 1010;
+$zindex-message         : 1010;
+$zindex-popover         : 1030;
+$zindex-picker          : 1050;
+$zindex-dropdown        : 1050;
+$zindex-tooltip         : 1060;
+
+// Animation
+$ease-out            : cubic-bezier(0.215, 0.61, 0.355, 1);
+$ease-in             : cubic-bezier(0.55, 0.055, 0.675, 0.19);
+$ease-in-out         : cubic-bezier(0.645, 0.045, 0.355, 1);
+$ease-out-back       : cubic-bezier(0.12, 0.4, 0.29, 1.46);
+$ease-in-back        : cubic-bezier(0.71, -0.46, 0.88, 0.6);
+$ease-in-out-back    : cubic-bezier(0.71, -0.46, 0.29, 1.46);
+$ease-out-circ       : cubic-bezier(0.08, 0.82, 0.17, 1);
+$ease-in-circ        : cubic-bezier(0.6, 0.04, 0.98, 0.34);
+$ease-in-out-circ    : cubic-bezier(0.78, 0.14, 0.15, 0.86);
+$ease-out-quint      : cubic-bezier(0.23, 1, 0.32, 1);
+$ease-in-quint       : cubic-bezier(0.755, 0.05, 0.855, 0.06);
+$ease-in-out-quint   : cubic-bezier(0.86, 0, 0.07, 1);
+
+// Media queries breakpoints
+// Extra small screen / phone
+$screen-xs              : 480px;
+$screen-xs-min          : $screen-xs;
+
+// Small screen / tablet
+$screen-sm              : 768px;
+$screen-sm-min          : $screen-sm;
+
+// Medium screen / desktop
+$screen-md              : 992px;
+$screen-md-min          : $screen-md;
+
+// Large screen / wide desktop
+$screen-lg              : 1200px;
+$screen-lg-min          : $screen-lg;
+
+// Extra Large screen / full hd
+$screen-xl              : 1600px;
+$screen-xl-min          : $screen-xl;
+
+// provide a maximum
+$screen-xs-max          : ($screen-sm-min - 1px);
+$screen-sm-max          : ($screen-md-min - 1px);
+$screen-md-max          : ($screen-lg-min - 1px);
+$screen-lg-max          : ($screen-xl-min - 1px);
+
+// Layout Gutter
+$layout-gutter: 8px;
+
+$sm:    $layout-gutter;
+$md:    $layout-gutter * 2;
+$lg:    $layout-gutter * 3;
+
+$grid-breakpoints:
+    xs $screen-xs,
+    sm $screen-sm,
+    md $screen-md,
+    lg $screen-lg,
+    xl $screen-xl;
+
+// spaceing
+$spacings:
+    0  0,
+    sm $sm,
+    md $md,
+    lg $lg;
+
+// type
+$ul-ol-margin:      18px;
+
+// position
+$zindex-base:       $zindex-back-top - 1;
+$zindex-fixed:      $zindex-base;
+
+// 文本
+$text-sm:       $font-size-base + 0; // 12px
+$text-md:       $font-size-base + 2; // 14px
+$text-lg:       $font-size-base + 4; // 16px
+
+// icon
+$icon-sm:       $font-size-base * 2; // 24px
+$icon-md:       $font-size-base * 4; // 48px
+$icon-lg:       $font-size-base * 6; // 72px
+
+// 宽度
+$widths:
+    sm $layout-gutter * 20, // 160px
+    md $layout-gutter * 30, // 240px
+    lg $layout-gutter * 40; // 320px
+
+// 圆角
+$border-radius-md:       $border-radius-base; // 4px
+$border-radius-lg:       $border-radius-base + 2px; // 6px
+
+$muted-color: #8c8c8c;
+
+// =========LAYOUTS=========
+$zindex:                    $zindex-base;
+$layout-ease:               cubic-bezier(.25, 0, .15, 1);
+$header-hg:                 64px;
+$header-bg:                 $primary-color;
+$header-padding:            $layout-gutter * 2;
+$header-search-enabled:     true;
+$header-search-height:      34px;
+
+$aside-wd:                      200px;
+$aside-bg:                      #fff;
+$aside-scrollbar-width:         0;
+$aside-scrollbar-height:        0;
+$aside-scrollbar-track-color:   transparent;
+$aside-scrollbar-thumb-color:   transparent;
+
+$aside-nav-fs:                              14px;
+$aside-nav-padding-top-bottom:              $layout-gutter;
+$aside-nav-text-color:                      $text-color;
+$aside-nav-text-hover-color:                $primary-color;
+$aside-nav-group-text-color:                $text-color-secondary;
+$aside-nav-selected-text-color:             $primary-color;
+$aside-nav-selected-bg:                     #fcfcfc;
+$aside-nav-item-height:                     38px;
+$aside-collapsed-wd:                        $layout-gutter * 8;
+$aside-collapsed-nav-fs:                    24px;
+$nav-icon-width: 14px;
+
+$content-heading-bg:                        #fafbfc;
+$content-heading-border:                    #efe3e5;
+$content-padding:                           $layout-gutter * 3;
+$content-bg:                                #f5f7fa;
+
+// =========COMPONENTS=========
+// quick menu
+$quick-menu-width:          200px;
+$quick-menu-bg:             #fff;
+$quick-menu-border-width:   1px;
+$quick-menu-border-color:   #ddd;
+$quick-menu-top:            120px;
+$quick-menu-ctrl-hw:        50px;
+// placeholder
+$placeholder-margin-vertical:                   15px;
+$placeholder-padding:                           20px;
+$placeholder-border:                            #ddd;
+$placeholder-background:                        #fafafa;
+$placeholder-color:                             #444;
+$placeholder-large-padding-vertical:            80px;
+// reuse-tab
+$reuse-tab-height:          52px;
+$reuse-tab-bg:              #fff;
+$reuse-tab-padding:         8px;
+$reuse-tab-border-color:    #d9d9d9;
+
+// track control state of visual feedback
+$form-state-visual-feedback-enabled: false;
+// search-form
+$search-form-bg:        #fbfbfb;
+$search-form-radius:    4px;
+// footer-toolbar
+$footer-toolbar-height: 56px;
+
+// fullscreen
+$fullscreen-bg:                #333;
+
+
+

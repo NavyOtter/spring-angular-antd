@@ -6,23 +6,56 @@
   "menu": [
     {
       "text": "主导航",
-      "i18n": "main_navigation",
+      "i18n": "menu.main",
       "group": true,
       "children": [
         {
           "text": "仪表盘",
-          "i18n": "dashboard",
+          "i18n": "menu.dashboard",
           "link": "/dashboard",
-          "icon": "icon-speedometer"
+          "icon": "anticon anticon-home"
         },
         {
           "text": "快捷菜单",
-          "i18n": "shortcut",
-          "icon": "icon-rocket",
+          "i18n": "menu.shortcut",
+          "icon": "anticon anticon-rocket",
           "shortcut_root": true,
           "children": []
         }
       ]
+    },
+    {
+      "text": "个人设置",
+      "i18n": "menu.account",
+      "group": true,
+      "children": [
+        {
+          "text": "个人信息",
+          "i18n": "menu.profile",
+          "link": "/profile",
+          "icon": "anticon anticon-user"
+        },
+        {
+          "text": "修改密码",
+          "i18n": "menu.password",
+          "link": "/password",
+          "icon": "anticon anticon-lock"
+        }
+      ]
+    },
+    {
+      "text": "系统管理",
+      "i18n": "menu.system",
+      "group": true,
+      "children": [
+        {
+          "text": "用户管理",
+          "i18n": "menu.users",
+          "link": "/users",
+          "icon": "anticon anticon-team"
+        }
+      ]
     }
+
   ]
 }

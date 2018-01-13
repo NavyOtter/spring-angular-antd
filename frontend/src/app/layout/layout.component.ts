@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, NavigationEnd, RouteConfigLoadStart, NavigationError } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd';
 
@@ -16,7 +16,8 @@ import { AuthService } from '../core/auth/auth.service';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class LayoutComponent implements OnInit {
   isFetching = false;
