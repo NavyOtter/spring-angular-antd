@@ -1,0 +1,28 @@
+{
+  "app": {
+    "name": "spring-angular-antd",
+    "description": "Spring Ng-Zorro Archetype"
+  },
+  "menu": [
+    {
+      "text": "主导航",
+      "i18n": "main_navigation",
+      "group": true,
+      "children": [
+        {
+          "text": "仪表盘",
+          "i18n": "dashboard",
+          "link": "/dashboard",
+          "icon": "icon-speedometer"
+        },
+        {
+          "text": "快捷菜单",
+          "i18n": "shortcut",
+          "icon": "icon-rocket",
+          "shortcut_root": true,
+          "children": []
+        }
+      ]
+    }
+  ]
+}

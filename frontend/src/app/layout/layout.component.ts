@@ -33,6 +33,7 @@ export class LayoutComponent implements OnInit {
       }
       if (evt instanceof NavigationError) {
         this.isFetching = false;
+        // TODO: i18n
         messageService.error(`无法加载${evt.url}路由`, { nzDuration: 1000 * 3 });
         return;
       }

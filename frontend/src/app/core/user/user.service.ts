@@ -2,8 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-import { environment } from '../../../environments/environment';
-
 import { User } from './user';
 
 import { Criteria } from '../model/criteria';
@@ -12,7 +10,7 @@ import { Page } from '../model/page';
 @Injectable()
 export class UserService {
 
-  private resourceUrl = environment.apiUrl + 'api/users';
+  private resourceUrl = `api/users`;
 
   constructor(private http: HttpClient) { }
 

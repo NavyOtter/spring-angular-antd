@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  apiUrl: ''
+  SERVER_URL: `.`
 };

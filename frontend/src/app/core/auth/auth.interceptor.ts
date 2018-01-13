@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-
+import 'rxjs/add/operator/do';
 import { environment } from '../../../environments/environment';
 import { AuthService } from './auth.service';
 
@@ -14,20 +14,23 @@ export class AuthInterceptor implements HttpInterceptor {
   constructor(private injector: Injector) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const apiUrl = environment.apiUrl;
+
+    let url = req.url;
     let authReq = req.clone();
 
-    this.authService = this.injector.get(AuthService);
-    // only auth /api /management url
-    if (req.url.startsWith(apiUrl + 'api') || req.url.startsWith(apiUrl + 'management')) {
+    if (!url.startsWith('https://') && !url.startsWith('http://') && !url.startsWith('assets/')) {
+      url = environment.SERVER_URL + url;
+
+      this.authService = this.injector.get(AuthService);
       const token = this.authService.getToken();
 
       if (!!token) {
-        authReq = req.clone({ setHeaders: { Authorization: 'Bearer ' + token } });
-        //authReq.headers.append('Authorization', 'Bearer ' + token);
+        authReq = req.clone({ url: url, setHeaders: { Authorization: 'Bearer ' + token } });
+      } else {
+        authReq = req.clone({ url: url });
       }
-
     }
+
     return next.handle(authReq).do(
       event => {
         if (event instanceof HttpResponse) {
