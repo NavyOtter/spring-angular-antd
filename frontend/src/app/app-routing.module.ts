@@ -13,17 +13,34 @@ import { LoginComponent } from "./login/login.component";
 
 export const routes: Routes = [
   {
+    path: '',
+    redirectTo: '/dashboard',
+    pathMatch: 'full'
+  },
+  {
+    path: "login",
+    component: LoginComponent
+  },
+  {
+    path: "forbidden",
+    component: ForbiddenComponent
+  },
+  {
+    path: "error",
+    component: ErrorComponent
+  },
+  {
     path: "",
     component: LayoutComponent,
-    // canActivateChild: [AuthGuard],
+    canActivateChild: [AuthGuard],
     children: [
       {
-        path: "",
+        path: "dashboard",
         loadChildren: "app/dashboard/dashboard.module#DashboardModule",
-        // canLoad: [AuthGuard],
+        canLoad: [AuthGuard],
         data: {
-          preload: true
-          // authorities: ['ROLE_USER']
+          preload: true,
+          authorities: ["ROLE_USER"]
         }
       },
       // {
@@ -39,22 +56,10 @@ export const routes: Routes = [
         loadChildren: "app/test/test.module#TestModule",
         // canLoad: [AuthGuard],
         data: {
-          // authorities: ['ROLE_ADMIN']
+          authorities: ["ROLE_ADMIN"]
         }
       }
     ]
-  },
-  {
-    path: "login",
-    component: LoginComponent
-  },
-  {
-    path: "forbidden",
-    component: ForbiddenComponent
-  },
-  {
-    path: "error",
-    component: ErrorComponent
   },
   {
     path: "**",

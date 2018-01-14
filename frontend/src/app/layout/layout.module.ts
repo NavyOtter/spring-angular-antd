@@ -9,6 +9,7 @@ import { SidebarNavComponent } from "./sidebar-nav/sidebar-nav.component";
 import { ReuseTabComponent } from "./reuse-tab/reuse-tab.component";
 import { ReuseTabService } from "./reuse-tab/reuse-tab.service";
 import { ReuseTabStrategy } from "./reuse-tab/reuse-tab-strategy";
+import { HeaderUserComponent } from './header-user/header-user.component';
 
 @NgModule({
   imports: [CommonModule, SharedModule],
@@ -17,7 +18,8 @@ import { ReuseTabStrategy } from "./reuse-tab/reuse-tab-strategy";
     SidebarComponent,
     HeaderComponent,
     SidebarNavComponent,
-    ReuseTabComponent
+    ReuseTabComponent,
+    HeaderUserComponent
   ],
   providers: [
     ReuseTabService,
