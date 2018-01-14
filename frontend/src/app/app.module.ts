@@ -12,7 +12,7 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { LayoutModule } from './layout/layout.module';
 import { PageModule } from './page/page.module';
-// import { LoginModule } from './login/login.module';
+import { LoginModule } from './login/login.module';
 
 /* Routing Module */
 import { AppRoutingModule } from './app-routing.module';
@@ -29,7 +29,7 @@ import { AppRoutingModule } from './app-routing.module';
     SharedModule,
     LayoutModule,
     PageModule,
-    // LoginModule,
+    LoginModule,
 
     AppRoutingModule
 

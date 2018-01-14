@@ -1,0 +1,17 @@
+@import "src/styles/variables";
+:host {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  background-color: $content-bg !important;
+
+  .login-card {
+    display: block;
+    width: 368px;
+    margin: 0 auto;
+  }
+  .text-right {
+    text-align: right;
+  }
+
+}
