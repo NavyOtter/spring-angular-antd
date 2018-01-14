@@ -54,9 +54,9 @@ export const routes: Routes = [
       {
         path: "test",
         loadChildren: "app/test/test.module#TestModule",
-        // canLoad: [AuthGuard],
+        canLoad: [AuthGuard],
         data: {
-          authorities: ["ROLE_ADMIN"]
+          authorities: ["ROLE_USER"]
         }
       }
     ]

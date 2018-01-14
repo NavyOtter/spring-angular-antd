@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.luhuiguo.archetypes</groupId>
   <artifactId>spring-angular-antd</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.1.0</version>
   <packaging>war</packaging>
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -48,46 +48,18 @@
     <mapstruct.version>1.2.0.Final</mapstruct.version>
     <jjwt.version>0.9.0</jjwt.version>
     <problem-spring-web.version>0.22.0</problem-spring-web.version>
-    <node.version>v9.3.0</node.version>
+    <node.version>v9.4.0</node.version>
     <!-- Spring Profile-->
     <spring.profiles.active>dev</spring.profiles.active>
   </properties>
-  <repositories>
-    <repository>
-      <id>luhuiguo-release</id>
-      <url>http://repo.luhuiguo.com/artifactory/libs-release</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>luhuiguo-snapshot</id>
-      <url>http://repo.luhuiguo.com/artifactory/libs-snapshot</url>
-      <snapshots/>
-    </repository>
-  </repositories>
-  <pluginRepositories>
-    <pluginRepository>
-      <id>luhuiguo-release</id>
-      <url>http://repo.luhuiguo.com/artifactory/libs-release</url>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </pluginRepository>
-    <pluginRepository>
-      <id>luhuiguo-snapshot</id>
-      <url>http://repo.luhuiguo.com/artifactory/libs-snapshot</url>
-      <snapshots/>
-    </pluginRepository>
-  </pluginRepositories>
   <distributionManagement>
     <snapshotRepository>
-      <id>luhuiguo</id>
-      <url>http://repo.luhuiguo.com/artifactory/libs-snapshot-local</url>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </snapshotRepository>
     <repository>
-      <id>luhuiguo</id>
-      <url>http://repo.luhuiguo.com/artifactory/libs-release-local</url>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
   </distributionManagement>
   <dependencies>
