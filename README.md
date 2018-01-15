@@ -1,4 +1,4 @@
-# Spring + NG_ZORRO Archetype
+# Spring Boot + Angular + Ant Design Archetype
 
 ## Usage
 
