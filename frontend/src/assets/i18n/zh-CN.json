@@ -1,13 +1,33 @@
 {
+  "app": {
+    "name": "spring-angular-antd",
+    "description": "Spring Angular AntD Archetype"
+  },
+  "action": {
+    "ok": "确定",
+    "cancel": "取消"
+  },
+  "fullscreen": {
+    "enter": "全屏",
+    "exit": "退出全屏"
+  },
   "menu": {
     "main": "主菜单",
+    "home": "主页",
+    "logout": "注销",
     "dashboard": "仪表盘",
     "shortcut": "快捷菜单",
     "account": "账户设置",
     "profile": "个人信息",
     "password": "修改密码",
     "system": "系统管理",
-    "users": "用户管理"
+    "users": "用户管理",
+    "others": "其它",
+    "test": "测试",
+    "exception": "错误页"
+  },
+  "reuse": {
+    "confirm": "确认清空标签页吗？"
   }
 
 

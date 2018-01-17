@@ -40,9 +40,9 @@ export class LoginComponent implements OnInit {
   get password() { return this.form.controls.password; }
 
   submit() {
-    for (const i in this.form.controls) {
-      this.form.controls[i].markAsDirty();
-    }
+    // for (const i in this.form.controls) {
+    //   this.form.controls[i].markAsDirty();
+    // }
 
     if (this.form.valid) {
       this.loading = true;

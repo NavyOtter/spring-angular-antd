@@ -9,22 +9,22 @@ import {
   HostListener,
   ChangeDetectionStrategy,
   ChangeDetectorRef
-} from "@angular/core";
-import { Router } from "@angular/router";
-import { DOCUMENT } from "@angular/common";
-import { Subscription } from "rxjs/Subscription";
+} from '@angular/core';
+import { Router } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
+import { Subscription } from 'rxjs/Subscription';
 
-import { Menu } from "../../core/menu/menu";
-import { MenuService } from "../../core/menu/menu.service";
-import { SettingsService } from "../../core/settings/settings.service";
+import { Menu } from '../../../core/menu/menu';
+import { MenuService } from '../../../core/menu/menu.service';
+import { SettingsService } from '../../../core/settings/settings.service';
 
-const SHOWCLS = "nav-floating-show";
-const FLOATINGCLS = "nav-floating";
+const SHOWCLS = 'nav-floating-show';
+const FLOATINGCLS = 'nav-floating';
 
 @Component({
-  selector: "app-sidebar-nav",
-  templateUrl: "./sidebar-nav.component.html",
-  styleUrls: ["./sidebar-nav.component.scss"],
+  selector: 'app-sidebar-nav',
+  templateUrl: './sidebar-nav.component.html',
+  styleUrls: ['./sidebar-nav.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   preserveWhitespaces: false,
   encapsulation: ViewEncapsulation.None
@@ -49,7 +49,7 @@ export class SidebarNavComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.bodyEl = this.doc.querySelector("body");
+    this.bodyEl = this.doc.querySelector('body');
     this.menuSrv.openedByUrl(this.router.url);
     this.genFloatingContainer();
     this.change$ = <any>this.menuSrv.change.subscribe(res => {
@@ -65,12 +65,12 @@ export class SidebarNavComponent implements OnInit, OnDestroy {
       return;
     }
     const linkNode = e.target as Element;
-    if (linkNode.nodeName !== "A") {
+    if (linkNode.nodeName !== 'A') {
       return;
     }
-    let url: string = linkNode.getAttribute("href");
+    let url: string = linkNode.getAttribute('href');
     if (url) {
-      if (url.startsWith("#")) url = url.slice(1);
+      if (url.startsWith('#')) { url = url.slice(1); }
       this.router.navigateByUrl(url);
     }
     this.hideAll();
@@ -81,14 +81,14 @@ export class SidebarNavComponent implements OnInit, OnDestroy {
     if (this.floatingEl) {
       this.floatingEl.remove();
       this.floatingEl.removeEventListener(
-        "click",
+        'click',
         this.floatingAreaClickHandle.bind(this)
       );
     }
-    this.floatingEl = this.render.createElement("div");
-    this.floatingEl.classList.add(FLOATINGCLS + "-container");
+    this.floatingEl = this.render.createElement('div');
+    this.floatingEl.classList.add(FLOATINGCLS + '-container');
     this.floatingEl.addEventListener(
-      "click",
+      'click',
       this.floatingAreaClickHandle.bind(this),
       false
     );
@@ -97,7 +97,7 @@ export class SidebarNavComponent implements OnInit, OnDestroy {
 
   private genSubNode(linkNode: HTMLLinkElement, item: Menu): HTMLUListElement {
     const id = `_sidebar-nav-${item.__id}`;
-    let node = this.floatingEl.querySelector("#" + id) as HTMLUListElement;
+    let node = this.floatingEl.querySelector('#' + id) as HTMLUListElement;
     if (node) {
       return node;
     }
@@ -105,7 +105,7 @@ export class SidebarNavComponent implements OnInit, OnDestroy {
     node.id = id;
     node.classList.add(FLOATINGCLS);
     node.addEventListener(
-      "mouseleave",
+      'mouseleave',
       () => {
         node.classList.remove(SHOWCLS);
       },
@@ -116,7 +116,7 @@ export class SidebarNavComponent implements OnInit, OnDestroy {
   }
 
   private hideAll() {
-    const allNode = this.floatingEl.querySelectorAll("." + FLOATINGCLS);
+    const allNode = this.floatingEl.querySelectorAll('.' + FLOATINGCLS);
     for (let i = 0; i < allNode.length; i++) {
       allNode[i].classList.remove(SHOWCLS);
     }
@@ -142,7 +142,7 @@ export class SidebarNavComponent implements OnInit, OnDestroy {
     }
     e.preventDefault();
     const linkNode = e.target as Element;
-    if (linkNode.nodeName !== "A") {
+    if (linkNode.nodeName !== 'A') {
       return;
     }
     const subNode = this.genSubNode(linkNode as HTMLLinkElement, item);
@@ -153,7 +153,7 @@ export class SidebarNavComponent implements OnInit, OnDestroy {
 
   toggleOpen(item: Menu) {
     this.menuSrv.visit((i, p) => {
-      if (i !== item) i._open = false;
+      if (i !== item) { i._open = false; }
     });
     let pItem = item.__parent;
     while (pItem) {
@@ -164,12 +164,12 @@ export class SidebarNavComponent implements OnInit, OnDestroy {
     this.cd.markForCheck();
   }
 
-  @HostListener("document:click", ["$event.target"])
+  @HostListener('document:click', ['$event.target'])
   onClick() {
     this.hideAll();
   }
 
   ngOnDestroy(): void {
-    if (this.change$) this.change$.unsubscribe();
+    if (this.change$) { this.change$.unsubscribe(); }
   }
 }

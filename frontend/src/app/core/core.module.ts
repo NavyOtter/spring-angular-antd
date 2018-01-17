@@ -13,7 +13,7 @@ import { StateStorageService } from './auth/state-storage.service';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
 import { AuthInterceptor } from './auth/auth.interceptor';
-
+import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
 import { SettingsService } from './settings/settings.service';
 import { ScrollService } from './scroll/scroll.service';
 import { MenuService } from './menu/menu.service';
@@ -21,8 +21,11 @@ import { TitleService } from './title/title.service';
 import { I18NService } from './i18n/i18n.service';
 import { StartupService } from './startup/startup.service';
 
+import { UserService } from './user/user.service';
+
 import { registerLocaleData } from '@angular/common';
 import localeZhHans from '@angular/common/locales/zh-Hans';
+
 registerLocaleData(localeZhHans);
 
 // AoT requires an exported function for factories
@@ -49,6 +52,7 @@ export function StartupServiceFactory(startupService: StartupService): Function 
     Ng2Webstorage.forRoot({ prefix: 'app', separator: '-' })
   ],
   declarations: [
+    HasAnyAuthorityDirective
   ],
   entryComponents: [
   ],
@@ -70,7 +74,9 @@ export function StartupServiceFactory(startupService: StartupService): Function 
       useFactory: StartupServiceFactory,
       deps: [StartupService],
       multi: true
-    }
+    },
+    UserService,
+    HasAnyAuthorityDirective
   ]
 })
 export class CoreModule {

@@ -1,13 +1,33 @@
 {
+  "app": {
+    "name": "spring-angular-antd",
+    "description": "Spring Angular AntD Archetype"
+  },
+  "action": {
+    "ok": "OK",
+    "cancel": "Cancel"
+  },
+  "fullscreen": {
+    "enter": "Fullscreen",
+    "exit": "Exit Fullscreen"
+  },
   "menu": {
     "main": "Main Navigation",
+    "home": "Home",
+    "logout": "Logout",
     "dashboard": "Dashboard",
-    "shortcut": "Shortcut",
+    "shortcut": "Shortcuts",
     "account": "Account Settings",
     "profile": "Profile",
     "password": "Change Password",
     "system": "System Management",
-    "users": "User Management"
+    "users": "User Management",
+    "others": "Others",
+    "test": "Test",
+    "exception": "Exception Page"
+  },
+  "reuse": {
+    "confirm": "Are you sure you want to close all tabs?"
   }
 
 }

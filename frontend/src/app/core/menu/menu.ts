@@ -2,7 +2,7 @@ export interface Menu {
   /** 文本 */
   text: string;
   /** i18n主键 */
-  i18n?: string;
+  translate?: string;
   /** 是否菜单组 */
   group?: boolean;
   /** angular 路由 */

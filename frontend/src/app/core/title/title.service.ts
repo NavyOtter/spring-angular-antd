@@ -84,7 +84,7 @@ export class TitleService {
 
     const item = menus[menus.length - 1];
     let title;
-    if (item.translate && this.i18nService) title = this.i18nService.translate(item.i18n);
+    if (item.translate && this.i18nService) title = this.i18nService.translate(item.translate);
     this.setTitle(title || item.text);
   }
 }

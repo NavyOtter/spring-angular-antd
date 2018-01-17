@@ -14,32 +14,32 @@ import {
   Renderer2,
   Inject,
   ViewEncapsulation
-} from "@angular/core";
-import { Router, NavigationEnd, ActivatedRoute } from "@angular/router";
-import { DOCUMENT } from "@angular/platform-browser";
-import { Subscription } from "rxjs/Subscription";
-import { combineLatest } from "rxjs/observable/combineLatest";
-import { filter, debounceTime, take, first } from "rxjs/operators";
+} from '@angular/core';
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { DOCUMENT } from '@angular/platform-browser';
+import { Subscription } from 'rxjs/Subscription';
+import { combineLatest } from 'rxjs/observable/combineLatest';
+import { filter, debounceTime, take, first } from 'rxjs/operators';
 import {
   coerceNumberProperty,
   coerceBooleanProperty
-} from "@angular/cdk/coercion";
+} from '@angular/cdk/coercion';
 import {
   ReuseTabService,
   ReuseTabCached,
   ReuseTabNotify
-} from "./reuse-tab.service";
+} from './reuse-tab.service';
 
 @Component({
-  selector: "app-reuse-tab",
-  templateUrl: "./reuse-tab.component.html",
-  styleUrls: ["./reuse-tab.component.scss"],
+  selector: 'app-reuse-tab',
+  templateUrl: './reuse-tab.component.html',
+  styleUrls: ['./reuse-tab.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
   encapsulation: ViewEncapsulation.None
 })
 export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
   private sub$: Subscription;
-  _list: { url: string; title: string; [key: string]: any }[] = [];
+  _list: { url: string; title: string;[key: string]: any }[] = [];
   _pos = 0;
 
   /** 允许最多复用多少个页面 */
@@ -93,10 +93,10 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private el: ElementRef,
     private render: Renderer2,
     @Inject(DOCUMENT) private doc: any
-  ) {}
+  ) { }
 
   private gen(url?: string) {
-    if (!url) url = this.srv.getUrl(this.route.snapshot);
+    if (!url) { url = this.srv.getUrl(this.route.snapshot); }
     const ls = [...this.srv.items].map(
       (item: ReuseTabCached, index: number) => {
         return {
@@ -132,34 +132,34 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   private visibility() {
-    if (this.showCurrent) return;
+    if (this.showCurrent) { return; }
     this.render.setStyle(
       this.el.nativeElement,
-      "display",
-      this._list.length === 0 ? "none" : "block"
+      'display',
+      this._list.length === 0 ? 'none' : 'block'
     );
   }
 
   to(index: number) {
     const item = this._list[index];
-    if (!item || !item.url) return;
+    if (!item || !item.url) { return; }
     this.router.navigateByUrl(item.url);
     this.change.emit(item);
   }
 
   private removeByUrl(url: string): string {
     const removeIdx = this._list.findIndex(w => w.url === url);
-    if (removeIdx === -1) return null;
+    if (removeIdx === -1) { return null; }
 
     this.remove(removeIdx);
     return this._list[Math.min(removeIdx, this._list.length - 1)].url;
   }
 
   remove(idx: number) {
-    if (this.showCurrent && this._list.length === 1) return false;
+    if (this.showCurrent && this._list.length === 1) { return false; }
 
     const item = this._list[idx];
-    if (!this.srv._remove(item)) return false;
+    if (!this.srv._remove(item)) { return false; }
 
     this._list.splice(idx, 1);
 
@@ -189,15 +189,15 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
       .pipe(debounceTime(300))
       .subscribe(([res, url]) => {
         let nextUrl = this.router.url;
-        if (res.active === "remove" && res.url) {
+        if (res && res.active === 'remove' && res.url) {
           nextUrl = this.removeByUrl(res.url);
-          if (nextUrl === null) return;
+          if (nextUrl === null) { return; }
         }
         this.gen(nextUrl);
       });
 
     const title$ = this.srv.change
-      .pipe(filter(w => w && w.active === "title"), first())
+      .pipe(filter(w => w && w.active === 'title'), first())
       .subscribe(res => {
         this.gen(this.router.url);
         title$.unsubscribe();
@@ -208,7 +208,7 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
 
   private setClass() {
     const el = this.el.nativeElement;
-    const body = this.doc.querySelector("body");
+    const body = this.doc.querySelector('body');
     const fixedCls = `fixed`;
     const bodyCls = `has-reuse-tab`;
     if (this.fixed) {
@@ -221,15 +221,17 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
   }
 
   ngOnChanges(
-    changes: { [P in keyof this]?: SimpleChange } & SimpleChanges
+    changes: {[P in keyof this]?: SimpleChange } & SimpleChanges
   ): void {
-    if (changes.max) this.srv.max = this.max;
-    if (changes.excludes) this.srv.excludes = this.excludes;
+    if (changes.max) { this.srv.max = this.max; }
+    if (changes.excludes) { this.srv.excludes = this.excludes; }
     this.setClass();
     this.cd.markForCheck();
   }
 
   ngOnDestroy(): void {
-    if (this.sub$) this.sub$.unsubscribe();
+    if (this.sub$) {
+      this.sub$.unsubscribe();
+    }
   }
 }

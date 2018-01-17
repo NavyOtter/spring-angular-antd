@@ -5,6 +5,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { AvatarModule } from 'ngx-avatar';
+import { ContentHeaderComponent } from './component/content-header/content-header.component';
 
 @NgModule({
   imports: [
@@ -14,9 +16,12 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
     ReactiveFormsModule,
     RouterModule,
     TranslateModule,
+    AvatarModule,
     NgZorroAntdModule.forRoot({ extraFontName: 'anticon', extraFontUrl: './assets/fonts/iconfont' })
   ],
-  declarations: [],
+  declarations: [
+    ContentHeaderComponent
+  ],
   exports: [
     CommonModule,
     HttpClientModule,
@@ -24,7 +29,11 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
     ReactiveFormsModule,
     RouterModule,
     TranslateModule,
-    NgZorroAntdModule
+    AvatarModule,
+    NgZorroAntdModule,
+
+    ContentHeaderComponent
+
   ]
 })
 export class SharedModule { }

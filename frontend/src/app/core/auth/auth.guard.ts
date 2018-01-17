@@ -27,7 +27,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
   canLoad(route: Route): Observable<boolean> | Promise<boolean> | boolean {
     const authorities = route.data['authorities'];
-    let url = `/${route.path}`;
+    const url = `/${route.path}`;
     return this.checkAuth(authorities, url);
   }
 
@@ -39,7 +39,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
           return true;
         }
         if (account) {
-          let authed: boolean = authService.hasAnyAuthorityDirect(authorities);
+          const authed: boolean = authService.hasAnyAuthorityDirect(authorities);
           if (!authed) {
             this.router.navigate(['forbidden']);
           }
@@ -48,7 +48,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
       }
     ).catch(
       (err) => {
-        this.router.navigate(['login'])
+        this.router.navigate(['login']);
         return false;
       }
     );

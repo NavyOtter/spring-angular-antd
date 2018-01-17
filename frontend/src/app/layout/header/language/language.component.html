@@ -1,0 +1,10 @@
+<nz-dropdown nzPlacement="bottomRight">
+  <div class="item" nz-dropdown>
+    <span class="flag-icon flag-icon-{{lang.flag}}"></span> {{lang.text}}
+  </div>
+  <ul nz-menu>
+      <li nz-menu-item *ngFor="let item of langs"
+      [nzSelected]="item.code === settings.layout.lang"
+          (click)="change(item)"><span class="flag-icon flag-icon-{{item.flag}}"></span> {{item.text}}</li>
+  </ul>
+</nz-dropdown>

@@ -1,23 +1,23 @@
 {
   "app": {
     "name": "spring-angular-antd",
-    "description": "Spring Ng-Zorro Archetype"
+    "description": "Spring Angular AntD Archetype"
   },
   "menu": [
     {
       "text": "主导航",
-      "i18n": "menu.main",
+      "translate": "menu.main",
       "group": true,
       "children": [
         {
           "text": "仪表盘",
-          "i18n": "menu.dashboard",
+          "translate": "menu.dashboard",
           "link": "/dashboard",
           "icon": "anticon anticon-home"
         },
         {
           "text": "快捷菜单",
-          "i18n": "menu.shortcut",
+          "translate": "menu.shortcut",
           "icon": "anticon anticon-rocket",
           "shortcut_root": true,
           "children": []
@@ -26,18 +26,18 @@
     },
     {
       "text": "个人设置",
-      "i18n": "menu.account",
+      "translate": "menu.account",
       "group": true,
       "children": [
         {
           "text": "个人信息",
-          "i18n": "menu.profile",
+          "translate": "menu.profile",
           "link": "/profile",
           "icon": "anticon anticon-idcard"
         },
         {
           "text": "修改密码",
-          "i18n": "menu.password",
+          "translate": "menu.password",
           "link": "/password",
           "icon": "anticon anticon-lock"
         }
@@ -45,12 +45,12 @@
     },
     {
       "text": "系统管理",
-      "i18n": "menu.system",
+      "translate": "menu.system",
       "group": true,
       "children": [
         {
           "text": "用户管理",
-          "i18n": "menu.users",
+          "translate": "menu.users",
           "link": "/users",
           "icon": "anticon anticon-team"
         }
@@ -58,16 +58,19 @@
     },
     {
       "text": "其它",
+      "translate": "menu.others",
       "group": true,
       "children": [
         {
           "text": "测试",
+          "translate": "menu.test",
           "link": "/test",
           "icon": "anticon anticon-tool",
           "shortcut": true
         },
         {
           "text": "错误页",
+          "translate": "menu.exception",
           "icon": "anticon anticon-file",
           "children": [
             {

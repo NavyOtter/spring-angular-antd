@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { LocalStorageService } from 'ngx-webstorage';
 
-const KEY = 'layout';
+const KEY = 'app.layout';
 
 export interface App {
   name?: string;
@@ -30,17 +30,26 @@ export class SettingsService {
 
   private _layout: Layout = null;
 
-  constructor(private localStorage: LocalStorageService, ) { }
+  constructor() { }
+
+  private get(key: string) {
+    return JSON.parse(localStorage.getItem(key) || 'null') || null;
+}
+
+private set(key: string, value: any) {
+    localStorage.setItem(key, JSON.stringify(value));
+}
 
   get layout(): Layout {
+
     if (!this._layout) {
       this._layout = Object.assign(<Layout>{
         fixed: true,
         collapsed: false,
         boxed: false,
         lang: null
-      }, this.localStorage.retrieve(KEY));
-      this.localStorage.store(KEY, this._layout);
+      }, this.get(KEY));
+      this.set(KEY, this._layout);
     }
     return this._layout;
   }
@@ -48,7 +57,7 @@ export class SettingsService {
   setLayout(name: string, value: any): boolean {
     if (typeof this.layout[name] !== 'undefined') {
       this.layout[name] = value;
-      this.localStorage.store(KEY, this._layout);
+      this.set(KEY, this._layout);
       return true;
     }
     return false;

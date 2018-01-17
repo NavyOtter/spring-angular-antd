@@ -57,8 +57,8 @@ export class MenuService implements OnDestroy {
       item.__parent = parent;
       item._depth = depth;
 
-      if (!item.link) item.link = '';
-      if (!item.externalLink) item.externalLink = '';
+      if (!item.link) { item.link = ''; }
+      if (!item.externalLink) { item.externalLink = ''; }
 
       // badge
       if (item.badge) {
@@ -76,8 +76,9 @@ export class MenuService implements OnDestroy {
       }
 
       // shortcut
-      if (item.shortcut === true && (item.link || item.externalLink))
+      if (item.shortcut === true && (item.link || item.externalLink)) {
         shortcuts.push(item);
+      }
 
       const i18n = item.i18n || item.translate;
       item.text = this.i18nService && i18n ? this.i18nService.translate(i18n) : item.text;
@@ -90,7 +91,7 @@ export class MenuService implements OnDestroy {
         item._hidden = !this.authService.hasAuthorityDirect(item.authority);
       }
 
-      if (callback) callback(item, parent, depth);
+      if (callback) { callback(item, parent, depth); }
     });
 
     this.loadShortcut(shortcuts);
@@ -105,7 +106,7 @@ export class MenuService implements OnDestroy {
    *      3、否则放在0节点位置
    */
   private loadShortcut(shortcuts: Menu[]) {
-    if (shortcuts.length === 0 || this.data.length === 0) return;
+    if (shortcuts.length === 0 || this.data.length === 0) { return; }
 
     const ls = this.data[0].children || [];
     let pos = ls.findIndex(w => w.shortcut_root === true);
@@ -113,8 +114,7 @@ export class MenuService implements OnDestroy {
       pos = ls.findIndex(w => w.link.includes('dashboard') || w.externalLink.includes('dashboard'));
       pos = (pos !== -1 ? pos : -1) + 1;
       this.data[0].children.splice(pos, 0, {
-        text: '快捷菜单',
-        i18n: 'menu.shortcut',
+        text: this.i18nService.translate('menu.shortcut'),
         icon: 'anticon anticon-rocket',
         children: []
       });
@@ -135,7 +135,7 @@ export class MenuService implements OnDestroy {
   private removeShortcut() {
     const ls = this.data && this.data.length && this.data[0].children || [];
     const pos = ls.findIndex(w => w.shortcut_root === true);
-    if (pos !== -1) ls.splice(pos, 1);
+    if (pos !== -1) { ls.splice(pos, 1); }
   }
 
   get menus() {
@@ -193,7 +193,7 @@ export class MenuService implements OnDestroy {
     });
 
     const ret: Menu[] = [];
-    if (!item) return ret;
+    if (!item) { return ret; }
 
     do {
       ret.splice(0, 0, item);
@@ -204,6 +204,6 @@ export class MenuService implements OnDestroy {
   }
 
   ngOnDestroy(): void {
-    if (this._change$) this._change$.unsubscribe();
+    if (this._change$) { this._change$.unsubscribe(); }
   }
 }

@@ -6,7 +6,9 @@
       </ng-template>
   </nz-tab>
   <ng-template #opsContent>
-      <nz-popconfirm *ngIf="allowClose && srv.count" [nzTitle]="'确定清空吗？'" (nzOnConfirm)="clear()">
+      <nz-popconfirm *ngIf="allowClose && srv.count" nzTitle="{{ 'reuse.confirm' | translate }}"
+      nzOkText="{{ 'action.ok' | translate }}" nzCancelText="{{ 'action.cancel' | translate }}"
+      (nzOnConfirm)="clear()">
           <button nz-popconfirm nz-button [nzType]="'dashed'" [nzShape]="'circle'">
               <i class="anticon anticon-delete"></i>
           </button>
