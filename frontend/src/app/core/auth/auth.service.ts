@@ -60,7 +60,7 @@ export class AuthService {
             (principal) => {
 
             }
-          )
+          );
         }
       )
     );
@@ -106,14 +106,14 @@ export class AuthService {
       map(
         (account) => {
           if (account) {
-            this.authenticate(account)
+            this.authenticate(account);
           } else {
-            this.authenticate(null)
+            this.authenticate(null);
           }
           return this.principal;
         },
         (error) => {
-          this.authenticate(null)
+          this.authenticate(null);
           return null;
         }
       )

@@ -28,6 +28,18 @@
   },
   "reuse": {
     "confirm": "Are you sure you want to close all tabs?"
+  },
+  "login": {
+    "title": "Login",
+    "username": "Username",
+    "usernameRequired": "Username cannot be empty.",
+    "password": "Password",
+    "passwordRequired": "Password cannot be empty.",
+    "rememberMe": "Remember Me",
+    "forgot": "Forgot?",
+    "register": "Register！",
+    "submit": "Login",
+    "failed": "Incorrect username or password."
   }
 
 }

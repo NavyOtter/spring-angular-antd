@@ -1,12 +1,17 @@
 import { Injectable, Inject, Injector } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import { zhCN, enUS, NzLocaleService } from 'ng-zorro-antd';
 import { TranslateService } from '@ngx-translate/core';
 import { SettingsService } from '../settings/settings.service';
 
 @Injectable()
 export class I18NService {
+
+  langSource = new Subject<string>();
+
+  lang$ = this.langSource.asObservable();
 
   private _default = 'zh-CN';
 
@@ -31,11 +36,11 @@ export class I18NService {
 
   use(lang: string = null, firstLoad = true): Observable<any> {
     lang = lang || this.translateService.getDefaultLang();
+    this.langSource.next(lang);
     this.nzLocalService.setLocale(lang === 'en' ? enUS : zhCN);
     // need reload router because of ng-zorro-antd local system
     if (!firstLoad) {
       this.injector.get(Router).navigate(['/']);
-
     }
     return this.translateService.use(lang);
   }
@@ -55,5 +60,6 @@ export class I18NService {
   get currentLang() {
     return this.translateService.currentLang || this.translateService.getDefaultLang() || this._default;
   }
+
 }
 

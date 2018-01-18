@@ -28,6 +28,18 @@
   },
   "reuse": {
     "confirm": "确认清空标签页吗？"
+  },
+  "login": {
+    "title": "用户登录",
+    "username": "用户名",
+    "usernameRequired": "请输入用户名！",
+    "password": "密码",
+    "passwordRequired": "请输入密码！",
+    "rememberMe": "自动登录",
+    "forgot": "忘记密码？",
+    "register": "注册用户！",
+    "submit": "登录",
+    "failed": "用户名或密码错误。"
   }
 
 

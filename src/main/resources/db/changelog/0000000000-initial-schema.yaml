@@ -95,7 +95,7 @@ databaseChangeLog:
               - column:
                   name: lang_key
                   type: nvarchar(20)
-                  defaultValue: zh-cn
+                  defaultValue: zh-CN
                   remarks: 语言
               - column:
                   name: activated

@@ -34,11 +34,11 @@ export class SettingsService {
 
   private get(key: string) {
     return JSON.parse(localStorage.getItem(key) || 'null') || null;
-}
+  }
 
-private set(key: string, value: any) {
+  private set(key: string, value: any) {
     localStorage.setItem(key, JSON.stringify(value));
-}
+  }
 
   get layout(): Layout {
 

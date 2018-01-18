@@ -39,7 +39,11 @@ import {
 })
 export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
   private sub$: Subscription;
-  _list: { url: string; title: string;[key: string]: any }[] = [];
+  _list: {
+    url: string;
+    title: string;
+    [key: string]: any
+  }[] = [];
   _pos = 0;
 
   /** 允许最多复用多少个页面 */
