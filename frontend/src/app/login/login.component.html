@@ -1,33 +1,33 @@
 <nz-card class="login-card">
   <ng-template #title>
-    用户登录
+    {{ 'login.title' | translate }}
   </ng-template>
   <ng-template #body>
     <form nz-form [formGroup]="form" (ngSubmit)="submit()" role="form">
       <div nz-form-item>
-        <nz-alert *ngIf="authenticationError" nzType="error" [nzMessage]="'账户或密码错误'" [nzShowIcon]="true" class="mb-lg"></nz-alert>
+        <nz-alert *ngIf="failed" nzType="error" nzMessage="{{ 'login.failed' | translate }}" [nzShowIcon]="true" class="mb-lg"></nz-alert>
       </div>
       <div nz-form-item>
         <div nz-form-control [nzValidateStatus]="username">
-          <nz-input formControlName="username" nzPlaceHolder="用户名" nzSize="large">
+          <nz-input formControlName="username" nzPlaceHolder="{{ 'login.username' | translate }}" nzSize="large">
             <ng-template #prefix>
               <i class="anticon anticon-user"></i>
             </ng-template>
           </nz-input>
           <ng-container *ngIf="username.dirty || username.touched">
-            <p nz-form-explain *ngIf="username.errors?.required">请输入用户名！</p>
+            <p nz-form-explain *ngIf="username.errors?.required">{{ 'login.usernameRequired' | translate }}</p>
           </ng-container>
         </div>
       </div>
       <div nz-form-item>
         <div nz-form-control [nzValidateStatus]="password">
-          <nz-input formControlName="password" nzPlaceHolder="密码" nzType="password" nzSize="large">
+          <nz-input formControlName="password" nzPlaceHolder="{{ 'login.password' | translate }}" nzType="password" nzSize="large">
             <ng-template #prefix>
               <i class="anticon anticon-lock"></i>
             </ng-template>
           </nz-input>
           <ng-container *ngIf="password.dirty || password.touched">
-            <p nz-form-explain *ngIf="password.errors?.required">请输入密码！</p>
+            <p nz-form-explain *ngIf="password.errors?.required">{{ 'login.passwordRequired' | translate }}</p>
           </ng-container>
         </div>
       </div>
@@ -35,22 +35,22 @@
       <div nz-form-item nz-row>
         <div nz-col [nzSpan]="12">
           <label nz-checkbox formControlName="rememberMe">
-            <span>自动登录</span>
+            <span>{{ 'login.remember' | translate }}</span>
           </label>
         </div>
         <div nz-col [nzSpan]="12" class="text-right">
-          <a routerLink="/forget">忘记密码？</a>
+          <a routerLink="/forgot">{{ 'login.forgot' | translate }}</a>
         </div>
       </div>
       <div nz-form-item nz-row>
         <div nz-col [nzSpan]="12">
-          <button  nz-button [nzType]="'primary'" [disabled]="!form.valid" [nzLoading]="loading" [nzSize]="'large'" class="login-btn">
+          <button nz-button [nzType]="'primary'" [disabled]="!form.valid" [nzLoading]="loading" [nzSize]="'large'" class="login-btn">
             <i class="anticon anticon-login"></i>
-            <span>登录</span>
+            <span>{{ 'login.submit' | translate }}</span>
           </button>
         </div>
         <div nz-col [nzSpan]="12" class="text-right">
-          <a routerLink="/register">注册账户！</a>
+          <a routerLink="/register">{{ 'login.register' | translate }}</a>
         </div>
       </div>
     </form>

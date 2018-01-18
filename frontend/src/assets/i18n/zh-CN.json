@@ -35,11 +35,17 @@
     "usernameRequired": "请输入用户名！",
     "password": "密码",
     "passwordRequired": "请输入密码！",
-    "rememberMe": "自动登录",
+    "remember": "自动登录",
     "forgot": "忘记密码？",
     "register": "注册用户！",
     "submit": "登录",
     "failed": "用户名或密码错误。"
+  },
+  "exception": {
+    "403": "抱歉，你无权访问该页面",
+    "404": "抱歉，你访问的页面不存在",
+    "500": "抱歉，服务器出错了",
+    "home": "返回首页"
   }
 
 

@@ -3,10 +3,10 @@
 </div>
 <div class="cont">
   <h1>404</h1>
-  <div class="desc">抱歉，你访问的页面不存在</div>
+  <div class="desc">{{ 'exception.404' | translate }}</div>
 
   <div class="actions">
-    <button nz-button [routerLink]="['/']" [nzType]="'primary'" [nzSize]="'large'">返回首页</button>
+    <button nz-button [routerLink]="['/']" [nzType]="'primary'" [nzSize]="'large'">{{ 'exception.home' | translate }}</button>
     <ng-content></ng-content>
   </div>
 </div>

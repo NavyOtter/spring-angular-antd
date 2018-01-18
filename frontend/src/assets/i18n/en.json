@@ -35,11 +35,17 @@
     "usernameRequired": "Username cannot be empty.",
     "password": "Password",
     "passwordRequired": "Password cannot be empty.",
-    "rememberMe": "Remember Me",
+    "remember": "Remember Me",
     "forgot": "Forgot?",
-    "register": "Register！",
+    "register": "Register Now!",
     "submit": "Login",
     "failed": "Incorrect username or password."
+  },
+  "exception": {
+    "403": "You are not authorized to view this page.",
+    "404": "The requested URL was not found on this server.",
+    "500": "Internal Server Error.",
+    "home": "Home"
   }
 
 }

@@ -12,7 +12,7 @@ import { StateStorageService } from '../core/auth/state-storage.service';
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
-  authenticationError: boolean;
+  failed: boolean;
   loading: boolean;
 
   constructor(private router: Router,
@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
 
     if (this.form.valid) {
       this.loading = true;
-      this.authenticationError = false;
+      this.failed = false;
       this.authService.login(this.form.value).subscribe(
         (data) => {
           this.loading = false;
@@ -60,11 +60,11 @@ export class LoginComponent implements OnInit {
         },
         (error) => {
           this.loading = false;
-          this.authenticationError = true;
+          this.failed = true;
 
         }
 
-      )
+      );
     }
 
   }
