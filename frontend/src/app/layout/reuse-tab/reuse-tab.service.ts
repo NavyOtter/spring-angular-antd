@@ -158,7 +158,6 @@ export class ReuseTabService implements OnDestroy {
   set title(value: string) {
     if (!value) { return; }
     this._titleCached[this.getUrl(this.injector.get(ActivatedRoute).snapshot)] = value;
-    console.log('title');
     this._cachedChange.next({ active: 'title', title: value });
   }
 

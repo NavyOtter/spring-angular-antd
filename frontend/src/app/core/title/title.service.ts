@@ -2,6 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { Title, DOCUMENT } from '@angular/platform-browser';
 import { MenuService } from '../menu/menu.service';
 import { I18NService } from '../i18n/i18n.service';
+import { ActivatedRouteSnapshot, Router } from '@angular/router';
 
 @Injectable()
 export class TitleService {
@@ -72,6 +73,31 @@ export class TitleService {
     this.title.setTitle(newTitles.join(this._separator));
   }
 
+  private getTitleBySnapshot(routeSnapshot: ActivatedRouteSnapshot) {
+
+    let title: string;
+
+    if (routeSnapshot.data && routeSnapshot.data['translate']) {
+      title = this.i18nService.translate(routeSnapshot.data['translate']);
+    } else if (routeSnapshot.data && routeSnapshot.data['title']) {
+      title = routeSnapshot.data['title'];
+    }
+
+    if (routeSnapshot.firstChild) {
+      title = this.getTitleBySnapshot(routeSnapshot.firstChild) || title;
+    }
+    return title;
+  }
+
+  setTitleByRouter(router: Router) {
+    const title = this.getTitleBySnapshot(router.routerState.snapshot.root);
+    if (title) {
+      this.setTitle(title);
+    } else {
+      this.setTitleByUrl(router.url);
+    }
+  }
+
   /**
    * 根据URL地址从 `MenuService` 中获取对应的标题
    */
@@ -84,7 +110,9 @@ export class TitleService {
 
     const item = menus[menus.length - 1];
     let title;
-    if (item.translate && this.i18nService) title = this.i18nService.translate(item.translate);
+    if (item.translate && this.i18nService) {
+      title = this.i18nService.translate(item.translate);
+    }
     this.setTitle(title || item.text);
   }
 }

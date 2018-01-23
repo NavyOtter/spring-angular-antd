@@ -12,7 +12,7 @@ const routes: Routes = [
     component: UserComponent,
     children: [
       { path: '', component: UserListComponent, data: { authorities: ['ROLE_ADMIN'] } },
-      { path: ':id', component: UserEditComponent, data: { authorities: ['ROLE_ADMIN'] } },
+      { path: ':id', component: UserEditComponent, data: { title: '用户编辑', authorities: ['ROLE_ADMIN'] } },
     ]
 
   }

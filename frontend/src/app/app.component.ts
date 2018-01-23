@@ -26,10 +26,10 @@ export class AppComponent  implements OnInit {
   ngOnInit() {
     this.router.events.pipe(
             filter(evt => evt instanceof NavigationEnd),
-            map(() => this.router.url)
+            map(() => this.router)
         )
-        .subscribe(url => {
-            this.titleService.setTitleByUrl(url);
+        .subscribe(router => {
+            this.titleService.setTitleByRouter(router);
         });
   }
 }

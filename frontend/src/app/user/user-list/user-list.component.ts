@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd';
-import { TranslateService } from '@ngx-translate/core';
-import { map } from 'rxjs/operators';
 
 import { Page } from '../../core/model/page';
 import { User } from '../../core/user/user';
 import { UserCriteria } from '../../core/user/user-criteria';
 import { UserService } from '../../core/user/user.service';
+import { I18NService } from '../../core/i18n/i18n.service';
 
 
 @Component({
@@ -32,7 +31,7 @@ export class UserListComponent implements OnInit {
   constructor(
     private userService: UserService,
     private message: NzMessageService,
-    private translateService: TranslateService,
+    private i18nService: I18NService
   ) { }
 
   ngOnInit() {
@@ -51,7 +50,7 @@ export class UserListComponent implements OnInit {
       },
       error => {
         this.loading = false;
-        this.message.error(this.translateService.instant('error.load'));
+        this.message.error(this.i18nService.translate('error.load'));
       }
     );
   }
