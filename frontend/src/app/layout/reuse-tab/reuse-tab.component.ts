@@ -31,6 +31,7 @@ import {
   ReuseTabNotify
 } from './reuse-tab.service';
 import { GeneratedFile } from '@angular/compiler';
+import { MenuService } from '../../core/menu/menu.service';
 
 
 
@@ -43,7 +44,7 @@ import { GeneratedFile } from '@angular/compiler';
 })
 export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
   private sub$: Subscription;
-  langSub: Subscription;
+  private menuSub$: Subscription;
 
   _list: {
     url: string;
@@ -103,15 +104,12 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private el: ElementRef,
     private render: Renderer2,
     private translateService: TranslateService,
+    private menuService: MenuService,
     @Inject(DOCUMENT) private doc: any
   ) {
-    this.langSub = this.translateService.onLangChange.subscribe(
+    this.menuSub$ = this.menuService.change.subscribe(
       (event) => {
-        // this.srv.clear();
-        // this.gen();
-        // // console.log('1111111');
-        // this.cd.markForCheck();
-        // this.cd.detectChanges();
+        this.clear();
       });
   }
 
@@ -253,8 +251,8 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     if (this.sub$) {
       this.sub$.unsubscribe();
     }
-    if (this.langSub) {
-      this.langSub.unsubscribe();
+    if (this.menuSub$) {
+      this.menuSub$.unsubscribe();
     }
   }
 }
