@@ -24,16 +24,12 @@ import {
   coerceNumberProperty,
   coerceBooleanProperty
 } from '@angular/cdk/coercion';
-import { TranslateService } from '@ngx-translate/core';
 import {
   ReuseTabService,
   ReuseTabCached,
   ReuseTabNotify
 } from './reuse-tab.service';
-import { GeneratedFile } from '@angular/compiler';
 import { MenuService } from '../../core/menu/menu.service';
-
-
 
 @Component({
   selector: 'app-reuse-tab',
@@ -103,7 +99,6 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private route: ActivatedRoute,
     private el: ElementRef,
     private render: Renderer2,
-    private translateService: TranslateService,
     private menuService: MenuService,
     @Inject(DOCUMENT) private doc: any
   ) {
