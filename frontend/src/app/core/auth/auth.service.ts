@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Injector } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
 import { Observable } from 'rxjs/Observable';
@@ -8,6 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 
 import { User } from '../user/user';
+// import { MenuService } from '../menu/menu.service';
 
 
 @Injectable()
@@ -19,7 +20,10 @@ export class AuthService {
   authenticated = false;
   authenticationState = new Subject<User>();
 
+  // private menuService: MenuService;
+
   constructor(
+    private injector: Injector,
     private http: HttpClient,
     private localStorage: LocalStorageService,
     private sessionStorage: SessionStorageService
@@ -58,6 +62,9 @@ export class AuthService {
         jwt => {
           this.getPrincipal(true).subscribe(
             (principal) => {
+
+              // this.menuService = this.injector.get(MenuService);
+              // this.menuService.resume();
 
             }
           );

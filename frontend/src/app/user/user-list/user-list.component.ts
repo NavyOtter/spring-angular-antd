@@ -22,6 +22,7 @@ export class UserListComponent implements OnInit {
     page: 1,
     size: 10
   };
+  sortMap: any = {};
 
   data = <Page<User>>{
     totalElements: 0,
@@ -56,6 +57,7 @@ export class UserListComponent implements OnInit {
   }
 
   clear() {
+    this.sortMap = {};
     this.q = <UserCriteria>{
       page: 1,
       size: this.q.size
@@ -63,9 +65,33 @@ export class UserListComponent implements OnInit {
     this.load();
   }
 
+  sort(field: string, value: any) {
+    this.sortMap = {};
+    this.sortMap[field] = value;
+    this.q.sort = value ? `${field},${value.slice(0, -3)}` : '';
+    this.load();
+  }
 
   showMsg(msg: string) {
     this.message.info(msg);
+  }
+
+  delete(user: User) {
+    this.userService.delete(user.id).subscribe(
+      () => {
+        this.message.info('删除成功');
+        this.load();
+      },
+      (error) => {
+        this.message.error('删除失败');
+      }
+    );
+  }
+
+  edit() {
+  }
+
+  add() {
   }
 
 }

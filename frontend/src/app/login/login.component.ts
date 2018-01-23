@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../core/auth/auth.service';
 import { StateStorageService } from '../core/auth/state-storage.service';
+import { MenuService } from '../core/menu/menu.service';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,7 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
     private formBuilder: FormBuilder,
     private authService: AuthService,
+    private menuService: MenuService,
     private stateStorageService: StateStorageService) {
 
     this.createForm();
@@ -57,6 +59,8 @@ export class LoginComponent implements OnInit {
           } else {
             this.router.navigate(['']);
           }
+          this.menuService.resume();
+
         },
         (error) => {
           this.loading = false;

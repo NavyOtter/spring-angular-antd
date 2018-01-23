@@ -176,7 +176,7 @@ databaseChangeLog:
                   value: System
               - column:
                   name: email
-                  value: system@gildata.com
+                  value: system@domain.com
               - column:
                   name: activated
                   valueBoolean: true
@@ -200,7 +200,7 @@ databaseChangeLog:
                   value: Anonymous
               - column:
                   name: email
-                  value: anonymou@gildata.com
+                  value: anonymous@domain.com
               - column:
                   name: activated
                   valueBoolean: true
@@ -224,11 +224,34 @@ databaseChangeLog:
                   value: Administrator
               - column:
                   name: email
-                  value: admin@gildata.com
+                  value: admin@domain.com
               - column:
                   name: activated
                   valueBoolean: true
-
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  valueNumeric: 4
+              - column:
+                  name: username
+                  value: user
+              - column:
+                  name: password
+                  value: $2a$10$VEjxo0jq2YG9Rbk2HmX9S.k1uZBGYUHdUcid3g/vfiEl7lwWgOH/K
+              - column:
+                  name: nickname
+                  value: User
+              - column:
+                  name: name
+                  value: User
+              - column:
+                  name: email
+                  value: user@domain.com
+              - column:
+                  name: activated
+                  valueBoolean: true
 
         - createTable:
             tableName: authorities
@@ -289,6 +312,15 @@ databaseChangeLog:
               - column:
                   name: user_id
                   valueNumeric: 3
+              - column:
+                  name: authority
+                  value: ROLE_USER
+        - insert:
+            tableName: authorities
+            columns:
+              - column:
+                  name: user_id
+                  valueNumeric: 4
               - column:
                   name: authority
                   value: ROLE_USER

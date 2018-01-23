@@ -49,53 +49,63 @@ export class MenuService implements OnDestroy {
    * 重置菜单，可能I18N、用户权限变动时需要调用刷新
    */
   resume(callback?: (item: Menu, parentMenum: Menu, depth?: number) => void) {
-    let i = 1;
-    this.removeShortcut();
-    const shortcuts: Menu[] = [];
-    this.visit((item, parent, depth) => {
-      item.__id = i++;
-      item.__parent = parent;
-      item._depth = depth;
+    this.authService.getPrincipal().subscribe(
+      (principal) => {
+        let i = 1;
+        this.removeShortcut();
+        const shortcuts: Menu[] = [];
+        this.visit((item, parent, depth) => {
+          item.__id = i++;
+          item.__parent = parent;
+          item._depth = depth;
 
-      if (!item.link) { item.link = ''; }
-      if (!item.externalLink) { item.externalLink = ''; }
+          if (!item.link) { item.link = ''; }
+          if (!item.externalLink) { item.externalLink = ''; }
 
-      // badge
-      if (item.badge) {
-        if (item.badge_dot !== true) {
-          item.badge_dot = false;
-        }
-        if (!item.badge_status) {
-          item.badge_status = 'error';
-        }
+          // badge
+          if (item.badge) {
+            if (item.badge_dot !== true) {
+              item.badge_dot = false;
+            }
+            if (!item.badge_status) {
+              item.badge_status = 'error';
+            }
+          }
+
+          item._type = item.externalLink ? 2 : 1;
+          if (item.children && item.children.length > 0) {
+            item._type = 3;
+          }
+
+          // shortcut
+          if (item.shortcut === true && (item.link || item.externalLink)) {
+            shortcuts.push(item);
+          }
+
+          const i18n = item.i18n || item.translate;
+          item.text = this.i18nService && i18n ? this.i18nService.translate(i18n) : item.text;
+
+          // hidden
+          item._hidden = typeof item.hide === 'undefined' ? false : item.hide;
+
+          // authority
+          if (item.authority && this.authService) {
+            // this.authService.hasAuthority(item.authority).subscribe(
+            //   (value) => {
+            //     item._hidden = !value;
+            //   }
+            // );
+            item._hidden = !this.authService.hasAuthorityDirect(item.authority);
+          }
+
+          if (callback) { callback(item, parent, depth); }
+        });
+
+        this.loadShortcut(shortcuts);
+        this._change$.next(this.data);
       }
+    );
 
-      item._type = item.externalLink ? 2 : 1;
-      if (item.children && item.children.length > 0) {
-        item._type = 3;
-      }
-
-      // shortcut
-      if (item.shortcut === true && (item.link || item.externalLink)) {
-        shortcuts.push(item);
-      }
-
-      const i18n = item.i18n || item.translate;
-      item.text = this.i18nService && i18n ? this.i18nService.translate(i18n) : item.text;
-
-      // hidden
-      item._hidden = typeof item.hide === 'undefined' ? false : item.hide;
-
-      // authority
-      if (item.authority && this.authService) {
-        item._hidden = !this.authService.hasAuthorityDirect(item.authority);
-      }
-
-      if (callback) { callback(item, parent, depth); }
-    });
-
-    this.loadShortcut(shortcuts);
-    this._change$.next(this.data);
   }
 
   /**

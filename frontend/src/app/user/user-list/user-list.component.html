@@ -1,4 +1,4 @@
-<app-content-header title="用户管理"></app-content-header>
+<app-content-header></app-content-header>
 <div nz-row [nzGutter]="16">
   <div nz-col [nzMd]="24">
     <nz-card [nzBordered]="false">
@@ -84,6 +84,12 @@
             </div>
           </div>
         </form>
+        <div class="mb-md">
+          <button nz-button [routerLink]="['/users', '+']" [nzType]="'primary'" [nzSize]="'large'">
+            <i class="anticon anticon-plus"></i>
+            <span>新建</span>
+          </button>
+        </div>
         <nz-table #nzTable [nzAjaxData]="data.content" [nzShowSizeChanger]="true" [nzLoading]="loading" [nzTotal]="data.totalElements"
           [(nzPageIndex)]="q.page" (nzPageIndexChange)="load()" [(nzPageSize)]="q.size" (nzPageSizeChange)="load()" [nzSize]="'middle'">
           <thead nz-thead>
@@ -93,18 +99,23 @@
               </th>
               <th nz-th>
                 <span>用户名</span>
+                <nz-table-sort [(nzValue)]="sortMap.username" (nzValueChange)="sort('username',$event)"></nz-table-sort>
               </th>
               <th nz-th>
                 <span>邮箱</span>
+                <nz-table-sort [(nzValue)]="sortMap.email" (nzValueChange)="sort('email',$event)"></nz-table-sort>
               </th>
               <th nz-th>
                 <span>激活</span>
+                <nz-table-sort [(nzValue)]="sortMap.activated" (nzValueChange)="sort('activated',$event)"></nz-table-sort>
               </th>
               <th nz-th>
-                <span>状态</span>
+                <span>可用</span>
+                <nz-table-sort [(nzValue)]="sortMap.enabled" (nzValueChange)="sort('enabled',$event)"></nz-table-sort>
               </th>
               <th nz-th>
                 <span>创建时间</span>
+                <nz-table-sort [(nzValue)]="sortMap.createdDate" (nzValueChange)="sort('createdDate',$event)"></nz-table-sort>
               </th>
               <th nz-th>
                 <span>操作</span>
@@ -126,11 +137,12 @@
               </td>
               <td nz-td>{{data.createdDate | date:'yyyy-MM-dd HH:mm'}}</td>
               <td nz-td>
-                <a (click)="showMsg('Edit')">编辑</a>
+                <a [routerLink]="['/users', data.id]">编辑</a>
                 <span nz-table-divider></span>
-                <nz-popconfirm [nzTitle]="'确认删除吗？'" [nzOkText]="'确定'" [nzCancelText]="'取消'" (nzOnCancel)="showMsg('取消删除')">
+                <nz-popconfirm *ngIf="data.id>3" [nzTitle]="'确认删除吗？'" [nzOkText]="'确定'" (nzOnConfirm)="delete(data)" [nzCancelText]="'取消'" (nzOnCancel)="showMsg('取消删除')">
                   <a nz-popconfirm>删除</a>
                 </nz-popconfirm>
+                <a *ngIf="data.id<=3" disabled>删除</a>
               </td>
             </tr>
           </tbody>
