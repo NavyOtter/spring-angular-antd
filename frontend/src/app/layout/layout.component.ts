@@ -9,10 +9,6 @@ import { SettingsService } from '../core/settings/settings.service';
 import { User } from '../core/user/user';
 import { AuthService } from '../core/auth/auth.service';
 
-
-
-
-
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',

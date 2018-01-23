@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 
 import { User } from './user';
 
-import { Criteria } from '../model/criteria';
+import { UserCriteria } from './user-criteria';
 import { Page } from '../model/page';
 
 @Injectable()
@@ -30,16 +30,40 @@ export class UserService {
     return this.http.put(this.resourceUrl, user);
   }
 
-  query(criteria?: Criteria): Observable<Page<User>> {
+  query(criteria?: UserCriteria): Observable<Page<User>> {
     let params = new HttpParams();
     if (criteria) {
-      params.set('page', String(criteria.page));
-      params.set('size', String(criteria.size));
+      params = params.append('page', String(criteria.page));
+      params = params.append('size', String(criteria.size));
       if (criteria.sort) {
-        params.set('sort', criteria.sort);
+        params = params.append('sort', criteria.sort);
       }
-      params.set('filter', criteria.filter);
+      if (criteria.filter) {
+        params = params.append('filter', criteria.filter);
+      }
+      if (criteria.username) {
+        params = params.append('username', criteria.username);
+      }
+      if (criteria.nickname) {
+        params = params.append('nickname', criteria.nickname);
+      }
+      if (criteria.name) {
+        params = params.append('name', criteria.name);
+      }
+      if (criteria.email) {
+        params = params.append('email', criteria.email);
+      }
+      if (criteria.enabled != null) {
+        params = params.append('enabled', String(criteria.enabled));
+      }
+      if (criteria.activated != null) {
+        params = params.append('activated', String(criteria.activated));
+      }
+      if (criteria.authority) {
+        params = params.append('authority', criteria.authority);
+      }
     }
+    console.log(params.toString());
     return this.http.get<Page<User>>(this.resourceUrl, { params: params });
   }
 }

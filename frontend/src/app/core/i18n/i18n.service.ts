@@ -36,12 +36,12 @@ export class I18NService {
 
   use(lang: string = null, firstLoad = true): Observable<any> {
     lang = lang || this.translateService.getDefaultLang();
-    this.langSource.next(lang);
     this.nzLocalService.setLocale(lang === 'en' ? enUS : zhCN);
     // need reload router because of ng-zorro-antd local system
     if (!firstLoad) {
       this.injector.get(Router).navigate(['/']);
     }
+    this.langSource.next(lang);
     return this.translateService.use(lang);
   }
   /** 获取语言列表 */

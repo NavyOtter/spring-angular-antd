@@ -5,12 +5,16 @@ import {
   TemplateRef,
   ContentChild,
   OnInit,
+  OnDestroy,
   AfterViewInit,
   Inject,
-  Renderer2
+  Renderer2,
+  ChangeDetectorRef
 } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { coerceBooleanProperty } from '@angular/cdk/coercion';
+import { Subscription } from 'rxjs/Subscription';
+import { TranslateService } from '@ngx-translate/core';
 import { MenuService } from '../../../core/menu/menu.service';
 import { I18NService } from '../../../core/i18n/i18n.service';
 
@@ -19,7 +23,7 @@ import { I18NService } from '../../../core/i18n/i18n.service';
   templateUrl: './content-header.component.html',
   styleUrls: ['./content-header.component.scss']
 })
-export class ContentHeaderComponent implements OnInit {
+export class ContentHeaderComponent implements OnInit, OnDestroy {
   // region fields
 
   @Input() title: string;
@@ -37,6 +41,8 @@ export class ContentHeaderComponent implements OnInit {
   private _autoBreadcrumb = true;
 
   paths: any[] = [];
+
+  subscription: Subscription;
 
   @ContentChild('breadcrumb') breadcrumb: TemplateRef<any>;
 
@@ -57,8 +63,18 @@ export class ContentHeaderComponent implements OnInit {
     private menuSrv: MenuService,
     private i18nSrv: I18NService,
     private el: ElementRef,
-    private renderer: Renderer2
-  ) { }
+    private renderer: Renderer2,
+    private translateService: TranslateService,
+    private changeDetectorRef: ChangeDetectorRef
+  ) {
+    this.subscription = this.translateService.onLangChange.subscribe(
+      (event) => {
+        this.genBreadcrumb();
+        this.changeDetectorRef.markForCheck();
+        this.changeDetectorRef.detectChanges();
+      }
+    );
+  }
 
   private genBreadcrumb() {
     if (this.breadcrumb || !this.autoBreadcrumb) {
@@ -90,5 +106,9 @@ export class ContentHeaderComponent implements OnInit {
       'app-content-header'
     );
     this.genBreadcrumb();
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
 }

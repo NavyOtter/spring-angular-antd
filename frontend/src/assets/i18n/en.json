@@ -29,6 +29,15 @@
   "reuse": {
     "confirm": "Are you sure you want to close all tabs?"
   },
+  "error": {
+    "load": "An error occurred loading this content."
+  },
+  "exception": {
+    "403": "You are not authorized to view this page.",
+    "404": "The requested URL was not found on this server.",
+    "500": "Internal Server Error.",
+    "home": "Home"
+  },
   "login": {
     "title": "Login",
     "username": "Username",
@@ -41,11 +50,8 @@
     "submit": "Login",
     "failed": "Incorrect username or password."
   },
-  "exception": {
-    "403": "You are not authorized to view this page.",
-    "404": "The requested URL was not found on this server.",
-    "500": "Internal Server Error.",
-    "home": "Home"
+  "dashboard": {
+    "title": "Dashboard"
   }
 
 }

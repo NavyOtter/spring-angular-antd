@@ -24,11 +24,15 @@ import {
   coerceNumberProperty,
   coerceBooleanProperty
 } from '@angular/cdk/coercion';
+import { TranslateService } from '@ngx-translate/core';
 import {
   ReuseTabService,
   ReuseTabCached,
   ReuseTabNotify
 } from './reuse-tab.service';
+import { GeneratedFile } from '@angular/compiler';
+
+
 
 @Component({
   selector: 'app-reuse-tab',
@@ -39,6 +43,8 @@ import {
 })
 export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
   private sub$: Subscription;
+  langSub: Subscription;
+
   _list: {
     url: string;
     title: string;
@@ -96,8 +102,18 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
     private route: ActivatedRoute,
     private el: ElementRef,
     private render: Renderer2,
+    private translateService: TranslateService,
     @Inject(DOCUMENT) private doc: any
-  ) { }
+  ) {
+    this.langSub = this.translateService.onLangChange.subscribe(
+      (event) => {
+        // this.srv.clear();
+        // this.gen();
+        // // console.log('1111111');
+        // this.cd.markForCheck();
+        // this.cd.detectChanges();
+      });
+  }
 
   private gen(url?: string) {
     if (!url) { url = this.srv.getUrl(this.route.snapshot); }
@@ -236,6 +252,9 @@ export class ReuseTabComponent implements OnInit, OnChanges, OnDestroy {
   ngOnDestroy(): void {
     if (this.sub$) {
       this.sub$.unsubscribe();
+    }
+    if (this.langSub) {
+      this.langSub.unsubscribe();
     }
   }
 }

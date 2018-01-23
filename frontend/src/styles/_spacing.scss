@@ -1,0 +1,22 @@
+@each $prop, $abbrev in (margin: m, padding: p) {
+  @each $infix, $length in (-lg: 24px, -md: 16px, -sm: 8px) {
+
+    .#{$abbrev}#{$infix} { #{$prop}: $length !important; }
+    .#{$abbrev}t#{$infix},
+    .#{$abbrev}y#{$infix} {
+      #{$prop}-top: $length !important;
+    }
+    .#{$abbrev}r#{$infix},
+    .#{$abbrev}x#{$infix} {
+      #{$prop}-right: $length !important;
+    }
+    .#{$abbrev}b#{$infix},
+    .#{$abbrev}y#{$infix} {
+      #{$prop}-bottom: $length !important;
+    }
+    .#{$abbrev}l#{$infix},
+    .#{$abbrev}x#{$infix} {
+      #{$prop}-left: $length !important;
+    }
+  }
+}

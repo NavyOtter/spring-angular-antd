@@ -2,7 +2,7 @@ $flag-icon-css-path: '~flag-icon-css/flags' !default;
 @import "~flag-icon-css/sass/flag-icon";
 
 @import "styles/variables";
-// @import "styles/layout";
+@import "styles/spacing";
 
 // 中心元素
 .abs-center-container {
