@@ -1,14 +1,17 @@
 package com.luhuiguo.archetype;
 
+import com.luhuiguo.archetype.config.ApplicationProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
 /**
- * Created by luhuiguo on 2017/2/14.
+ * Application.
  */
 @SpringBootApplication
+@EnableConfigurationProperties(ApplicationProperties.class)
 public class Application extends SpringBootServletInitializer {
 
   public static void main(String[] args) {

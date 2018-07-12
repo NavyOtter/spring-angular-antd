@@ -1,17 +1,15 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { LocalStorageService, SessionStorageService } from 'ngx-webstorage';
-import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
-import { of } from 'rxjs/observable/of';
-import { catchError, map, tap } from 'rxjs/operators';
-import { environment } from '../../../environments/environment';
+import { Observable, of, throwError, Subject} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
+
 
 import { User } from '../user/user';
-// import { MenuService } from '../menu/menu.service';
 
-
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
 
   public static readonly TOKEN_KEY = 'authenticationToken';
@@ -20,7 +18,6 @@ export class AuthService {
   authenticated = false;
   authenticationState = new Subject<User>();
 
-  // private menuService: MenuService;
 
   constructor(
     private injector: Injector,
@@ -57,19 +54,18 @@ export class AuthService {
           this.storeAuthenticationToken(jwt, credentials.rememberMe);
           return jwt;
         }
-      }),
-      tap(
-        jwt => {
-          this.getPrincipal(true).subscribe(
-            (principal) => {
-
-              // this.menuService = this.injector.get(MenuService);
-              // this.menuService.resume();
-
-            }
-          );
-        }
-      )
+      })
+      // ,
+      // tap(
+      //   jwt => {
+      //     this.getPrincipal(true).subscribe(
+      //       (principal) => {
+      //
+      //
+      //       }
+      //     );
+      //   }
+      // )
     );
   }
 
@@ -79,7 +75,7 @@ export class AuthService {
       this.storeAuthenticationToken(jwt, rememberMe);
       return of(jwt);
     } else {
-      return Observable.throw('jwt_required');
+      return throwError('jwt_required');
     }
   }
 
@@ -112,6 +108,7 @@ export class AuthService {
     return this.getAccount().pipe(
       map(
         (account) => {
+          console.log(account);
           if (account) {
             this.authenticate(account);
           } else {
@@ -120,6 +117,7 @@ export class AuthService {
           return this.principal;
         },
         (error) => {
+          console.log(error);
           this.authenticate(null);
           return null;
         }
@@ -200,3 +198,4 @@ export class AuthService {
     return this.authenticationState.asObservable();
   }
 }
+

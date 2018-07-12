@@ -1,7 +1,7 @@
 package com.luhuiguo.archetype.security;
 
 /**
- * Constants for Spring Security authorities.
+ * ApplicationConstants for Spring Security authorities.
  */
 public class AuthorityConstants {
 

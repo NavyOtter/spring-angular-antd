@@ -1,15 +1,15 @@
 package com.luhuiguo.archetype.config;
 
-
+import javax.annotation.PostConstruct;
 import com.luhuiguo.archetype.security.AuthorityConstants;
 import com.luhuiguo.archetype.security.jwt.JwtConfigurer;
 import com.luhuiguo.archetype.security.jwt.TokenProvider;
-import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.BeanInitializationException;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -63,6 +63,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
   }
 
+  @Override
+  @Bean
+  public AuthenticationManager authenticationManagerBean() throws Exception {
+    return super.authenticationManagerBean();
+  }
+
+
   @Bean
   public PasswordEncoder passwordEncoder() {
     return new BCryptPasswordEncoder();
@@ -78,7 +85,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .antMatchers("/i18n/**")
       .antMatchers("/assets/**")
       .antMatchers("/content/**")
-      .antMatchers("/swagger-ui/index.html")
+      .antMatchers("/swagger-resources/**")
+      .antMatchers("/swagger-ui.html")
+      .antMatchers("/v2/api-docs")
+      .antMatchers("/webjars/**")
       .antMatchers("/test/**")
       .antMatchers("/h2-console/**");
   }
@@ -113,11 +123,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .antMatchers("/api/account/reset-password/finish").permitAll()
       .antMatchers("/api/profile-info").permitAll()
       .antMatchers("/api/**").authenticated()
-      .antMatchers("/management/health").permitAll()
-      .antMatchers("/management/**").hasAuthority(AuthorityConstants.ADMIN)
-      .antMatchers("/v2/api-docs/**").permitAll()
-      .antMatchers("/swagger-resources/configuration/ui").permitAll()
-      .antMatchers("/swagger-ui/index.html").hasAuthority(AuthorityConstants.ADMIN)
+      .antMatchers("/actuator/health").permitAll()
+      .antMatchers("/actuator/**").hasAuthority(AuthorityConstants.ADMIN)
+      .antMatchers("/v2/api-docs").permitAll()
+      .antMatchers("/swagger-resources/**").permitAll()
+      .antMatchers("/webjars/**").permitAll()
+      .antMatchers("/swagger-ui.html").hasAuthority(AuthorityConstants.ADMIN)
 
       .and()
 

@@ -1,9 +1,7 @@
 package com.luhuiguo.archetype.web.rest;
 
-import com.luhuiguo.archetype.config.Constants;
 import com.luhuiguo.archetype.domain.User;
 import com.luhuiguo.archetype.domain.criteria.UserCriteria;
-import com.luhuiguo.archetype.domain.specification.UserSpecification;
 import com.luhuiguo.archetype.mapper.UserMapper;
 import com.luhuiguo.archetype.model.UserModel;
 import com.luhuiguo.archetype.repository.UserRepository;
@@ -14,7 +12,6 @@ import com.luhuiguo.archetype.web.rest.error.BadRequestAlertException;
 import com.luhuiguo.archetype.web.rest.error.EmailAlreadyUsedException;
 import com.luhuiguo.archetype.web.rest.error.UsernameAlreadyUsedException;
 import com.luhuiguo.archetype.web.rest.util.HeaderUtils;
-import com.luhuiguo.archetype.web.rest.util.PaginationUtils;
 import com.luhuiguo.archetype.web.rest.util.ResponseUtils;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -26,8 +23,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.DeleteMapping;

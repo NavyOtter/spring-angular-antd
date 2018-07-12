@@ -1,10 +1,9 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse, HttpErrorResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/do';
+import { Observable, of, throwError } from 'rxjs';
+import {mergeMap, catchError, tap} from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { AuthService } from './auth.service';
-
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -31,19 +30,18 @@ export class AuthInterceptor implements HttpInterceptor {
       }
     }
 
-    return next.handle(authReq).do(
-      event => {
-        if (event instanceof HttpResponse) {
+    return next.handle(authReq).pipe(
 
-        }
-      },
-      error => {
-        if (error instanceof HttpErrorResponse) {
-          if (error.status === 401) {
-            this.authService.logout().subscribe();
+      tap(
+        (event: HttpEvent<any>) => {},
+        (err: any) => {
+          if (err instanceof HttpErrorResponse) {
+            if (err.status === 401) {
+              this.authService.logout().subscribe();
+            }
           }
         }
-      }
+      )
     );
   }
 }

@@ -1,16 +1,18 @@
 import { Injectable } from '@angular/core';
 import { Router, Route, CanActivate, CanActivateChild, CanLoad, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 import { AuthService } from './auth.service';
 import { StateStorageService } from './state-storage.service';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
   constructor(private router: Router,
-    private authService: AuthService,
-    private stateStorageService: StateStorageService) {
+              private authService: AuthService,
+              private stateStorageService: StateStorageService) {
   }
 
   canActivate(
@@ -35,6 +37,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     const authService = this.authService;
     return authService.getPrincipal().toPromise().then(
       (account) => {
+        console.log(account);
         if (!authorities || authorities.length === 0) {
           return true;
         }
@@ -48,9 +51,11 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
       }
     ).catch(
       (err) => {
+        console.log('2222');
         this.router.navigate(['login']);
         return false;
       }
     );
   }
 }
+

@@ -1,7 +1,7 @@
 package com.luhuiguo.archetype.web.rest;
 
-import static com.luhuiguo.archetype.config.Constants.PASSWORD_MAX_LENGTH;
-import static com.luhuiguo.archetype.config.Constants.PASSWORD_MIN_LENGTH;
+import static com.luhuiguo.archetype.config.ApplicationConstants.PASSWORD_MAX_LENGTH;
+import static com.luhuiguo.archetype.config.ApplicationConstants.PASSWORD_MIN_LENGTH;
 
 import com.luhuiguo.archetype.domain.User;
 import com.luhuiguo.archetype.mapper.UserMapper;

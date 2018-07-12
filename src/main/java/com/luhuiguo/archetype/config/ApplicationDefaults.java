@@ -25,4 +25,20 @@ public interface ApplicationDefaults {
     }
 
   }
+
+  interface Logging {
+
+    interface Logstash {
+
+      boolean enabled = false;
+
+      String host = "localhost";
+
+      int port = 5000;
+
+      int queueSize = 512;
+    }
+  }
+
+
 }

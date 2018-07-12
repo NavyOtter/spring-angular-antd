@@ -1,46 +1,39 @@
-server:
-  compression:
-    enabled: false
-
 logging:
-  file: target/logs/application.log
+  file: target/application.log
   level:
-    root: INFO
-    com.gildata: INFO
-
+    root: WARN
+    com.luhuiguo: INFO
 spring:
-  datasource:
-    url: jdbc:h2:file:./target/work/h2db/db/demo;DB_CLOSE_DELAY=-1;
-    username:
-    password:
-    max-active: 100
-    max-idle: 20
-    min-idle: 20
-    initial-size: 50
-    max-wait: 60000
-    validation-query: SELECT 1
-    test-on-borrow: true
-    test-on-return: false
-    test-while-idle: true
-    time-between-eviction-runs-millis: 60000
-    min-evictable-idle-time-millis: 300000
-  jpa:
-    database-platform: org.hibernate.dialect.H2Dialect
-    database: H2
-    open-in-view: false
-    show-sql: false
-    generate-ddl: false
-    hibernate:
-      ddl-auto: none
-      use-new-id-generator-mappings: true
-      naming:
-        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
-        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+  profiles:
+    active: dev
+  devtools:
+    restart:
+      enabled: true
+    livereload:
+      enabled: false
   thymeleaf:
     cache: false
   h2:
     console:
       enabled: true
+  datasource:
+    url: jdbc:h2:file:./target/h2db/db/demo;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    database: H2
+    show-sql: true
+    properties:
+      hibernate.id.new_generator_mappings: true
+      hibernate.cache.use_second_level_cache: true
+      hibernate.cache.use_query_cache: false
+      hibernate.generate_statistics: true
+
 application:
-  work:
-    directory: work
+  logging:
+    logstash:
+      enabled: false
+      host: localhost
+      port: 5000
+      queue-size: 512

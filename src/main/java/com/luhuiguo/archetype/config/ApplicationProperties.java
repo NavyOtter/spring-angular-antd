@@ -9,13 +9,14 @@ import org.springframework.stereotype.Component;
  * Application configuration properties
  */
 @Data
-@Component
 @ConfigurationProperties(prefix = "application")
 public class ApplicationProperties {
 
   private final Mail mail = new Mail();
 
   private final Security security = new Security();
+
+  private final Logging logging = new Logging();
 
   @Data
   public static class Mail {
@@ -49,6 +50,24 @@ public class ApplicationProperties {
     }
 
 
+  }
+
+  @Data
+  public static class Logging {
+
+    private final Logstash logstash = new Logstash();
+
+    @Data
+    public static class Logstash {
+
+      private boolean enabled = ApplicationDefaults.Logging.Logstash.enabled;
+
+      private String host = ApplicationDefaults.Logging.Logstash.host;
+
+      private int port = ApplicationDefaults.Logging.Logstash.port;
+
+      private int queueSize = ApplicationDefaults.Logging.Logstash.queueSize;
+    }
   }
 
 }

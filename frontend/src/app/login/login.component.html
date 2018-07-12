@@ -1,58 +1,32 @@
-<nz-card class="login-card">
-  <ng-template #title>
-    {{ 'login.title' | translate }}
-  </ng-template>
-  <ng-template #body>
-    <form nz-form [formGroup]="form" (ngSubmit)="submit()" role="form">
-      <div nz-form-item>
-        <nz-alert *ngIf="failed" nzType="error" nzMessage="{{ 'login.failed' | translate }}" [nzShowIcon]="true" class="mb-lg"></nz-alert>
-      </div>
-      <div nz-form-item>
-        <div nz-form-control [nzValidateStatus]="username">
-          <nz-input formControlName="username" nzPlaceHolder="{{ 'login.username' | translate }}" nzSize="large">
-            <ng-template #prefix>
-              <i class="anticon anticon-user"></i>
-            </ng-template>
-          </nz-input>
-          <ng-container *ngIf="username.dirty || username.touched">
-            <p nz-form-explain *ngIf="username.errors?.required">{{ 'login.usernameRequired' | translate }}</p>
-          </ng-container>
-        </div>
-      </div>
-      <div nz-form-item>
-        <div nz-form-control [nzValidateStatus]="password">
-          <nz-input formControlName="password" nzPlaceHolder="{{ 'login.password' | translate }}" nzType="password" nzSize="large">
-            <ng-template #prefix>
-              <i class="anticon anticon-lock"></i>
-            </ng-template>
-          </nz-input>
-          <ng-container *ngIf="password.dirty || password.touched">
-            <p nz-form-explain *ngIf="password.errors?.required">{{ 'login.passwordRequired' | translate }}</p>
-          </ng-container>
-        </div>
-      </div>
+<nz-card class="login-card" nzTitle="用户登录">
 
-      <div nz-form-item nz-row>
-        <div nz-col [nzSpan]="12">
-          <label nz-checkbox formControlName="rememberMe">
-            <span>{{ 'login.remember' | translate }}</span>
-          </label>
-        </div>
-        <div nz-col [nzSpan]="12" class="text-right">
-          <a routerLink="/forgot">{{ 'login.forgot' | translate }}</a>
-        </div>
-      </div>
-      <div nz-form-item nz-row>
-        <div nz-col [nzSpan]="12">
-          <button nz-button [nzType]="'primary'" [disabled]="!form.valid" [nzLoading]="loading" [nzSize]="'large'" class="login-btn">
-            <i class="anticon anticon-login"></i>
-            <span>{{ 'login.submit' | translate }}</span>
-          </button>
-        </div>
-        <div nz-col [nzSpan]="12" class="text-right">
-          <a routerLink="/register">{{ 'login.register' | translate }}</a>
-        </div>
-      </div>
-    </form>
-  </ng-template>
+  <form class="login-form" nz-form [formGroup]="form" (ngSubmit)="submitForm()" role="form">
+    <nz-form-item>
+      <nz-alert *ngIf="failed" nzType="error" nzMessage="用户名或密码错误！" [nzShowIcon]="true" class="mb-lg"></nz-alert>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group nzPrefixIcon="anticon anticon-user">
+          <input type="text" nz-input formControlName="username" placeholder="用户名">
+        </nz-input-group>
+        <nz-form-explain *ngIf="(username.dirty || username.touched) && username.errors?.required">请输入用户名！</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group nzPrefixIcon="anticon anticon-lock">
+          <input type="password" nz-input formControlName="password" placeholder="密码">
+        </nz-input-group>
+        <nz-form-explain *ngIf="(password.dirty || password.touched) && password.errors?.required">请输入密码！</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <label nz-checkbox formControlName="rememberMe">
+          <span>记住密码</span>
+        </label>
+        <button nz-button class="login-form-button" [disabled]="!form.valid" [nzLoading]="loading" [nzType]="'primary'">登录</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
 </nz-card>

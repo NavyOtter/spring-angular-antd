@@ -1,7 +1,7 @@
 package com.luhuiguo.archetype.service;
 
 
-import com.luhuiguo.archetype.config.Constants;
+import com.luhuiguo.archetype.config.ApplicationConstants;
 import com.luhuiguo.archetype.domain.User;
 import com.luhuiguo.archetype.domain.criteria.UserCriteria;
 import com.luhuiguo.archetype.domain.specification.UserSpecification;
@@ -142,8 +142,8 @@ public class UserService {
    * @return updated user
    */
   public Optional<UserModel> updateUser(UserModel userModel) {
-    return Optional.of(userRepository
-      .findOne(userModel.getId()))
+    return userRepository
+      .findById(userModel.getId())
       .map(user -> {
         userMapper.updateEntityFromModel(userModel, user);
 
@@ -185,7 +185,7 @@ public class UserService {
 
   @Transactional(readOnly = true)
   public Page<UserModel> getAllManagedUsers(Pageable pageable) {
-    return userRepository.findAllByUsernameNot(pageable, Constants.ANONYMOUS_USER)
+    return userRepository.findAllByUsernameNot(pageable, ApplicationConstants.ANONYMOUS_USER)
       .map(userMapper::entityToModel);
   }
 

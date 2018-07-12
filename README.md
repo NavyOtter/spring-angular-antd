@@ -6,7 +6,7 @@
 mvn archetype:generate \
     -DarchetypeGroupId=com.luhuiguo.archetypes \
     -DarchetypeArtifactId=spring-angular-antd-archetype \
-    -DarchetypeVersion=0.1.0
+    -DarchetypeVersion=0.3.0
 ```
 
 ## Links

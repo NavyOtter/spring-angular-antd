@@ -6,7 +6,7 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.luhuiguo.archetype.config.Constants;
+import com.luhuiguo.archetype.config.ApplicationConstants;
 import java.time.Instant;
 import java.util.Set;
 import javax.persistence.CollectionTable;
@@ -15,11 +15,11 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import lombok.Data;
-import org.hibernate.validator.constraints.Email;
 
 @Data
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -29,7 +29,7 @@ import org.hibernate.validator.constraints.Email;
 public class User extends AbstractAuditingEntity<Long> {
 
   @NotNull
-  @Pattern(regexp = Constants.USERNAME_REGEX)
+  @Pattern(regexp = ApplicationConstants.USERNAME_REGEX)
   @Size(min = 1, max = 50)
   @Column(length = 50, unique = true, nullable = false)
   private String username;

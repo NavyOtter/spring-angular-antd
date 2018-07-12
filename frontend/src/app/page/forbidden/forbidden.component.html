@@ -3,10 +3,10 @@
 </div>
 <div class="cont">
   <h1>403</h1>
-  <div class="desc">{{ 'exception.403' | translate }}</div>
+  <div class="desc">抱歉，您无权访问该页面</div>
 
   <div class="actions">
-    <button nz-button [routerLink]="['/']" [nzType]="'primary'" [nzSize]="'large'">{{ 'exception.home' | translate }}</button>
+    <button nz-button [routerLink]="['/']" [nzType]="'primary'" [nzSize]="'large'">返回首页</button>
     <ng-content></ng-content>
   </div>
 </div>

@@ -1,4 +1,4 @@
-export interface Criteria {
+export class Criteria {
   page: number;
   size: number;
   sort?: string;

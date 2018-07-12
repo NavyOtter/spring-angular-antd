@@ -1,13 +1,13 @@
 package com.luhuiguo.archetype.model;
 
-import com.luhuiguo.archetype.config.Constants;
+import com.luhuiguo.archetype.config.ApplicationConstants;
 import java.time.Instant;
 import java.util.Set;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import lombok.Data;
-import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * A DTO representing a user, with his authorities.
@@ -18,7 +18,7 @@ public class UserModel {
   private Long id;
 
   @NotBlank
-  @Pattern(regexp = Constants.USERNAME_REGEX)
+  @Pattern(regexp = ApplicationConstants.USERNAME_REGEX)
   @Size(min = 1, max = 50)
   private String username;
 

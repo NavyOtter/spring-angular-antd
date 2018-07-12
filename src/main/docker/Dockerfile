@@ -1,4 +1,6 @@
-FROM openjdk:8-jre
+FROM openjdk:10-jre
+
+WORKDIR /opt/@project.artifactId@/
 
 ADD @project.build.finalName@.war /opt/@project.artifactId@/@project.build.finalName@.war
 

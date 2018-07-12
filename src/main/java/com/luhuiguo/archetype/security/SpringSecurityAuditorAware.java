@@ -1,6 +1,7 @@
 package com.luhuiguo.archetype.security;
 
-import com.luhuiguo.archetype.config.Constants;
+import com.luhuiguo.archetype.config.ApplicationConstants;
+import java.util.Optional;
 import org.springframework.data.domain.AuditorAware;
 import org.springframework.stereotype.Component;
 
@@ -11,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class SpringSecurityAuditorAware implements AuditorAware<String> {
 
   @Override
-  public String getCurrentAuditor() {
-    return SecurityUtils.getCurrentUsername().orElse(Constants.SYSTEM_ACCOUNT);
+  public Optional<String> getCurrentAuditor() {
+    return Optional.of(SecurityUtils.getCurrentUsername().orElse(ApplicationConstants.SYSTEM_ACCOUNT));
   }
 }
