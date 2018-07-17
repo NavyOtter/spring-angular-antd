@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 import { User } from './user';
 import { UserCriteria } from './user-criteria';
-import { Page } from '../model/page';
+import { Page } from '../interface/page';
 
 @Injectable({
   providedIn: 'root'
