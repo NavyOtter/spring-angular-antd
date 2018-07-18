@@ -4,7 +4,10 @@
       <a [routerLink]="['/']">首页</a>
     </nz-breadcrumb-item>
     <nz-breadcrumb-item>
-      仪表盘
+      <a [routerLink]="['/users']">用户管理</a>
+    </nz-breadcrumb-item>
+    <nz-breadcrumb-item>
+      {{user?.username || '新建用户'}}
     </nz-breadcrumb-item>
   </nz-breadcrumb>
 </div>

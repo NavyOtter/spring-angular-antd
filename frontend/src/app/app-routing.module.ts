@@ -29,14 +29,14 @@ export const routes: Routes = [
           authorities: ['ROLE_USER']
         }
       },
-      // {
-      //   path: 'users',
-      //   loadChildren: 'app/user/user.module#UserModule',
-      //   // canLoad: [AuthGuard],
-      //   data: {
-      //     authorities: ['ROLE_ADMIN']
-      //   }
-      // },
+      {
+        path: 'users',
+        loadChildren: './user/user.module#UserModule',
+        canLoad: [AuthGuard],
+        data: {
+          authorities: ['ROLE_ADMIN']
+        }
+      },
     ]
   },
   {

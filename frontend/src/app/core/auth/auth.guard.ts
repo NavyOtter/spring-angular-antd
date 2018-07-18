@@ -37,7 +37,6 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
     const authService = this.authService;
     return authService.getPrincipal().toPromise().then(
       (account) => {
-        console.log(account);
         if (!authorities || authorities.length === 0) {
           return true;
         }
@@ -51,7 +50,6 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
       }
     ).catch(
       (err) => {
-        console.log('2222');
         this.router.navigate(['login']);
         return false;
       }

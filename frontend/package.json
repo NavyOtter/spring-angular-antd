@@ -27,6 +27,7 @@
     "ng-zorro-antd": "^1.1.1",
     "ngx-webstorage": "^2.0.1",
     "rxjs": "^6.2.2",
+    "screenfull": "^3.3.2",
     "viser-ng": "^2.2.8",
     "zone.js": "^0.8.26"
   },

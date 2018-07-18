@@ -108,7 +108,6 @@ export class AuthService {
     return this.getAccount().pipe(
       map(
         (account) => {
-          console.log(account);
           if (account) {
             this.authenticate(account);
           } else {

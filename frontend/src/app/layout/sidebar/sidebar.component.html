@@ -1,3 +1,33 @@
-<p>
-  sidebar works!
-</p>
+<div class="aside-inner">
+
+  <ul nz-menu [nzMode]="'inline'" nzTheme='light' [nzInlineCollapsed]="settings.layout.collapsed">
+    <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+      <a [routerLink]="['/dashboard']"><i class="anticon anticon-dashboard"></i><span>仪表盘</span></a>
+    </li>
+    <li nz-submenu nzOpen>
+      <span title>
+        <i class="anticon anticon-user"></i>
+        <span>个人设置</span>
+      </span>
+      <ul>
+        <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+          <a [routerLink]="['/profile']"><i class="anticon anticon-profile"></i><span>个人信息</span></a>
+        </li>
+        <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+          <a [routerLink]="['/password']"><i class="anticon anticon-lock"></i><span>修改密码</span></a>
+        </li>
+      </ul>
+    </li>
+    <li nz-submenu nzOpen>
+      <span title>
+        <i class="anticon anticon-setting"></i>
+        <span>系统设置</span>
+      </span>
+      <ul>
+        <li nz-menu-item routerLinkActive="ant-menu-item-selected">
+          <a [routerLink]="['/users']"><i class="anticon anticon-team"></i><span>用户管理</span></a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
