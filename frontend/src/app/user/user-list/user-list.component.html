@@ -107,7 +107,7 @@
       <td>{{data.createdDate | date:'yyyy-MM-dd HH:mm'}}</td>
       <td>
         <a [routerLink]="['/users', data.id]">编辑</a>
-        <span nz-table-divider></span>
+        <nz-divider nzType="vertical"></nz-divider>
         <nz-popconfirm *ngIf="data.id>3" [nzTitle]="'确认删除吗？'" [nzOkText]="'确定'" (nzOnConfirm)="delete(data)" [nzCancelText]="'取消'" (nzOnCancel)="showMsg('取消删除')">
           <a nz-popconfirm>删除</a>
         </nz-popconfirm>
