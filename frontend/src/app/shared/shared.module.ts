@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
+import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
 
 @NgModule({
   imports: [
@@ -16,7 +17,7 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 
   ],
   declarations: [
-
+    HasAnyAuthorityDirective
   ],
   exports: [
     CommonModule,
@@ -24,7 +25,12 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
-    NgZorroAntdModule
+    NgZorroAntdModule,
+    HasAnyAuthorityDirective
+  ],
+  providers: [
+    HasAnyAuthorityDirective
   ]
+
 })
 export class SharedModule { }

@@ -1,5 +1,5 @@
 import { Directive, Input, TemplateRef, ViewContainerRef } from '@angular/core';
-import { AuthService } from './auth.service';
+import { AuthService } from '../../core/auth/auth.service';
 
 @Directive({
   selector: '[appHasAnyAuthority]'
@@ -7,7 +7,8 @@ import { AuthService } from './auth.service';
 export class HasAnyAuthorityDirective {
   private authorities: string[];
 
-  constructor(private authService: AuthService, private templateRef: TemplateRef<any>, private viewContainerRef: ViewContainerRef) { }
+  constructor(private authService: AuthService, private templateRef: TemplateRef<any>, private viewContainerRef: ViewContainerRef) {
+  }
 
 
   @Input()

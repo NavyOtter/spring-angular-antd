@@ -10,7 +10,7 @@ import { UserService } from '../../core/user/user.service';
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.component.html',
-  styleUrls: ['./user-list.component.scss']
+  styleUrls: ['./user-list.component.less']
 })
 export class UserListComponent implements OnInit {
 
@@ -40,7 +40,7 @@ export class UserListComponent implements OnInit {
     this.loading = true;
 
     const c = Object.assign({}, this.q);
-    c.page = this.q.page - 1;
+    c.page = this.q.page - 1 < 0? 0: this.q.page - 1;
     this.userService.query(c).subscribe(
       data => {
         this.loading = false;
@@ -62,10 +62,8 @@ export class UserListComponent implements OnInit {
     this.load();
   }
 
-  sort(field: string, value: any) {
-    this.sortMap = {};
-    this.sortMap[field] = value;
-    this.q.sort = value ? `${field},${value.slice(0, -3)}` : '';
+  sort(sort: { key: string, value: string }) {
+    this.q.sort = sort.value ? `${sort.key},${sort.value.slice(0, -3)}` : '';
     this.load();
   }
 

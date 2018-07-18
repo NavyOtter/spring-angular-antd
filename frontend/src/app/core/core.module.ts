@@ -6,7 +6,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { Ng2Webstorage } from 'ngx-webstorage';
 
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
 
 @NgModule({
   imports: [
@@ -16,11 +15,10 @@ import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
     Ng2Webstorage.forRoot({ prefix: 'app', separator: '-' })
   ],
   declarations: [
-    HasAnyAuthorityDirective
+
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    HasAnyAuthorityDirective
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ]
 })
 export class CoreModule {

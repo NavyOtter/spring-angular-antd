@@ -1,5 +1,6 @@
 <div class="aside-inner">
 
+
   <ul nz-menu [nzMode]="'inline'" nzTheme='light' [nzInlineCollapsed]="settings.layout.collapsed">
     <li nz-menu-item routerLinkActive="ant-menu-item-selected">
       <a [routerLink]="['/dashboard']"><i class="anticon anticon-dashboard"></i><span>仪表盘</span></a>
@@ -18,7 +19,7 @@
         </li>
       </ul>
     </li>
-    <li nz-submenu nzOpen>
+    <li nz-submenu nzOpen *appHasAnyAuthority="['ROLE_ADMIN']">
       <span title>
         <i class="anticon anticon-setting"></i>
         <span>系统设置</span>
