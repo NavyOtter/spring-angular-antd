@@ -30,6 +30,7 @@ export class AppComponent {
   ) {}
 
   ngOnInit() {
+
     this.router.events
     .pipe(filter(evt => evt instanceof NavigationEnd))
     .subscribe(() => this.titleService.setTitle());

@@ -1,4 +1,4 @@
-import { APP_INITIALIZER, NgModule, Optional, SkipSelf } from '@angular/core';
+import { APP_INITIALIZER, InjectionToken, NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -11,6 +11,8 @@ import { StartupService } from './startup/startup.service';
 export function StartupServiceFactory(startupService: StartupService): Function {
   return () => startupService.load();
 }
+
+export const WINDOW = new InjectionToken('Window');
 
 @NgModule({
   imports: [
@@ -35,6 +37,7 @@ export function StartupServiceFactory(startupService: StartupService): Function 
       deps: [StartupService],
       multi: true
     },
+    { provide: WINDOW, useValue: window }
   ]
 })
 export class CoreModule {
