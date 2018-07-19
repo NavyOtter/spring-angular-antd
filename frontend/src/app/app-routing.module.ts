@@ -8,7 +8,7 @@ import { ForbiddenComponent } from './page/forbidden/forbidden.component';
 import { NotFoundComponent } from './page/not-found/not-found.component';
 import { ErrorComponent } from './page/error/error.component';
 import { LoginComponent } from './login/login.component';
-import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
+import { SelectivePreloadingStrategy } from './core/preloading-strategy/selective-preloading-strategy';
 
 export const routes: Routes = [
   {
