@@ -124,6 +124,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .antMatchers("/api/profile-info").permitAll()
       .antMatchers("/api/**").authenticated()
       .antMatchers("/actuator/health").permitAll()
+      .antMatchers("/actuator/info").permitAll()
       .antMatchers("/actuator/**").hasAuthority(AuthorityConstants.ADMIN)
       .antMatchers("/v2/api-docs").permitAll()
       .antMatchers("/swagger-resources/**").permitAll()

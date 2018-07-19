@@ -2,6 +2,7 @@ import { Component, HostBinding } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import { SettingsService } from './core/settings/settings.service';
 import { filter } from 'rxjs/operators';
+import { TitleService } from './core/title/title.service';
 
 @Component({
   selector: 'app-root',
@@ -25,12 +26,12 @@ export class AppComponent {
   constructor(
     private router: Router,
     private settings: SettingsService,
-    //private titleService: TitleService
+    private titleService: TitleService
   ) {}
 
   ngOnInit() {
-    // this.router.events
-    // .pipe(filter(evt => evt instanceof NavigationEnd))
-    // .subscribe(() => this.titleService.setTitle());
+    this.router.events
+    .pipe(filter(evt => evt instanceof NavigationEnd))
+    .subscribe(() => this.titleService.setTitle());
   }
 }

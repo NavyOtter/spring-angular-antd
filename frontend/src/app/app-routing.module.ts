@@ -41,19 +41,31 @@ export const routes: Routes = [
   },
   {
     path: 'login',
-    component: LoginComponent
+    component: LoginComponent,
+    data: {
+      title: '登录'
+    }
   },
   {
     path: 'forbidden',
-    component: ForbiddenComponent
+    component: ForbiddenComponent,
+    data: {
+      title: '无权访问'
+    }
   },
   {
     path: 'error',
-    component: ErrorComponent
+    component: ErrorComponent,
+    data: {
+      title: '服务器出错'
+    }
   },
   {
     path: '**',
-    component: NotFoundComponent
+    component: NotFoundComponent,
+    data: {
+      title: '页面不存在'
+    }
   }
 
 ];
