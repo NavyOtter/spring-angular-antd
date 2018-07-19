@@ -1,13 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
- import { AuthGuard } from './core/auth/auth.guard';
+import { AuthGuard } from './core/auth/auth.guard';
 //
 import { LayoutComponent } from './layout/layout.component';
 import { ForbiddenComponent } from './page/forbidden/forbidden.component';
 import { NotFoundComponent } from './page/not-found/not-found.component';
 import { ErrorComponent } from './page/error/error.component';
 import { LoginComponent } from './login/login.component';
+import { SelectivePreloadingStrategy } from './selective-preloading-strategy';
 
 export const routes: Routes = [
   {
@@ -23,7 +24,7 @@ export const routes: Routes = [
       {
         path: 'dashboard',
         loadChildren: './dashboard/dashboard.module#DashboardModule',
-        canLoad: [AuthGuard],
+        // canLoad: [AuthGuard],
         data: {
           preload: true,
           authorities: ['ROLE_USER']
@@ -34,6 +35,7 @@ export const routes: Routes = [
         loadChildren: './user/user.module#UserModule',
         canLoad: [AuthGuard],
         data: {
+          preload: false,
           authorities: ['ROLE_ADMIN']
         }
       },
@@ -75,6 +77,7 @@ export const routes: Routes = [
     RouterModule.forRoot(routes,
       {
         //enableTracing: true, // <-- debugging purposes only
+        preloadingStrategy: SelectivePreloadingStrategy
       })
   ],
   exports: [
