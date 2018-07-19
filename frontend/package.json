@@ -22,6 +22,7 @@
     "@angular/platform-browser-dynamic": "^6.0.9",
     "@angular/router": "^6.0.9",
     "@antv/g2": "^3.2.4",
+    "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.4",
     "less": "^2.7.3",
     "ng-zorro-antd": "^1.1.1",
@@ -29,6 +30,7 @@
     "rxjs": "^6.2.2",
     "screenfull": "^3.3.2",
     "viser-ng": "^2.2.8",
+    "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.26"
   },
   "devDependencies": {
