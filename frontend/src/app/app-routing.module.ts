@@ -13,33 +13,8 @@ import { SelectivePreloadingStrategy } from './core/preloading-strategy/selectiv
 export const routes: Routes = [
   {
     path: '',
-    component: LayoutComponent,
-    canActivateChild: [AuthGuard],
-    children: [
-      {
-        path: '',
-        redirectTo: 'dashboard',
-        pathMatch: 'full'
-      },
-      {
-        path: 'dashboard',
-        loadChildren: './dashboard/dashboard.module#DashboardModule',
-        // canLoad: [AuthGuard],
-        data: {
-          preload: true,
-          authorities: ['ROLE_USER']
-        }
-      },
-      {
-        path: 'users',
-        loadChildren: './user/user.module#UserModule',
-        canLoad: [AuthGuard],
-        data: {
-          preload: false,
-          authorities: ['ROLE_ADMIN']
-        }
-      },
-    ]
+    redirectTo: '/dashboard',
+    pathMatch: 'full'
   },
   {
     path: 'login',
@@ -60,6 +35,41 @@ export const routes: Routes = [
     component: ErrorComponent,
     data: {
       title: '服务器出错'
+    }
+  },
+  {
+    path: '',
+    component: LayoutComponent,
+    children: [
+      {
+        path: 'dashboard',
+        loadChildren: './dashboard/dashboard.module#DashboardModule',
+        canLoad: [AuthGuard],
+        data: {
+          preload: true,
+          authorities: ['ROLE_USER']
+        }
+      },
+      {
+        path: 'password',
+        loadChildren: './password/password.module#PasswordModule',
+        canLoad: [AuthGuard],
+        data: {
+          authorities: ['ROLE_USER']
+        }
+      },
+      {
+        path: 'users',
+        loadChildren: './user/user.module#UserModule',
+        canLoad: [AuthGuard],
+        data: {
+          authorities: ['ROLE_ADMIN']
+        }
+      },
+    ],
+    canActivateChild: [AuthGuard],
+    data: {
+      authorities: ['ROLE_USER']
     }
   },
   {
