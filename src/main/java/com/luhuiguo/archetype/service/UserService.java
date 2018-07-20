@@ -11,6 +11,7 @@ import com.luhuiguo.archetype.repository.UserRepository;
 import com.luhuiguo.archetype.security.AuthorityConstants;
 import com.luhuiguo.archetype.security.SecurityUtils;
 import com.luhuiguo.archetype.util.RandomUtils;
+import com.luhuiguo.archetype.web.rest.error.InvalidPasswordException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.HashSet;
@@ -167,11 +168,15 @@ public class UserService {
     });
   }
 
-  public void changePassword(String password) {
+  public void changePassword(String currentClearTextPassword, String newPassword) {
     SecurityUtils.getCurrentUsername()
       .flatMap(userRepository::findOneByUsername)
       .ifPresent(user -> {
-        String encryptedPassword = passwordEncoder.encode(password);
+        String currentEncryptedPassword = user.getPassword();
+        if (!passwordEncoder.matches(currentClearTextPassword, currentEncryptedPassword)) {
+          throw new InvalidPasswordException();
+        }
+        String encryptedPassword = passwordEncoder.encode(newPassword);
         user.setPassword(encryptedPassword);
         log.debug("Changed password for User: {}", user);
       });

@@ -7,6 +7,7 @@ import com.luhuiguo.archetype.domain.User;
 import com.luhuiguo.archetype.mapper.UserMapper;
 import com.luhuiguo.archetype.model.KeyAndPassword;
 import com.luhuiguo.archetype.model.ManagedUser;
+import com.luhuiguo.archetype.model.PasswordChange;
 import com.luhuiguo.archetype.model.UserModel;
 import com.luhuiguo.archetype.repository.UserRepository;
 import com.luhuiguo.archetype.security.SecurityUtils;
@@ -140,15 +141,15 @@ public class AccountResource {
   /**
    * POST  /account/change-password : changes the current user's password
    *
-   * @param password the new password
+   * @param passwordChange current and new password
    * @throws InvalidPasswordException 400 (Bad Request) if the new password is incorrect
    */
   @PostMapping(path = "/account/change-password")
-  public void changePassword(@RequestBody String password) {
-    if (!checkPasswordLength(password)) {
+  public void changePassword(@RequestBody PasswordChange passwordChange) {
+    if (!checkPasswordLength(passwordChange.getNewPassword())) {
       throw new InvalidPasswordException();
     }
-    userService.changePassword(password);
+    userService.changePassword(passwordChange.getOldPassword(),passwordChange.getNewPassword());
   }
 
   /**

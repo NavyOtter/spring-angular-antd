@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NzMessageService } from 'ng-zorro-antd';
+import { PasswordService } from './password.service';
 
 @Component({
   selector: 'app-password',
@@ -10,6 +11,7 @@ import { NzMessageService } from 'ng-zorro-antd';
 export class PasswordComponent implements OnInit {
   form: FormGroup;
   submitting = false;
+  failed = false;
 
   visible = false;
   status = 'pool';
@@ -20,7 +22,10 @@ export class PasswordComponent implements OnInit {
     pool: 'exception',
   };
 
-  constructor(private fb: FormBuilder, private msg: NzMessageService) {}
+  constructor(private fb: FormBuilder,
+              private msg: NzMessageService,
+              private passwordService: PasswordService
+  ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -81,12 +86,25 @@ export class PasswordComponent implements OnInit {
       this.form.controls[i].markAsDirty();
       this.form.controls[i].updateValueAndValidity();
     }
-    if (this.form.invalid) return;
-    this.submitting = true;
-    setTimeout(() => {
-      this.submitting = false;
-      this.msg.success(`提交成功`);
-    }, 1000);
+    if (this.form.valid) {
+      this.submitting = true;
+      this.failed = false;
+      this.passwordService.save(this.oldPassword.value, this.password.value).subscribe(
+        () => {
+          this.submitting = false;
+          this.msg.success(`密码修改成功！`);
+          this.form.reset();
+
+        },
+        () => {
+          this.submitting = false;
+          this.failed = true;
+          this.msg.error(`密码修改失败！`);
+
+        }
+
+      );
+    }
   }
 }
 
