@@ -36,28 +36,26 @@ export class ProfileComponent implements OnInit {
       nickname: [
         null,
         [
-          Validators.required,
-          Validators.maxLength(20),
+          Validators.maxLength(20)
         ]
       ],
       name: [
         null,
         [
-          Validators.required,
-          Validators.maxLength(20),
+          Validators.maxLength(20)
         ]
       ],
       email: [
         null,
         [
           Validators.email,
-          Validators.maxLength(100),
+          Validators.maxLength(100)
         ]
       ],
       phone: [
         null,
         [
-          Validators.maxLength(20),
+          Validators.maxLength(20)
         ]
       ]
     });

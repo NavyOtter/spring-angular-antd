@@ -11,3 +11,86 @@
     </nz-breadcrumb-item>
   </nz-breadcrumb>
 </div>
+<nz-card [nzBordered]="false" nzTitle="编辑用户" [nzLoading]="loading">
+  <form nz-form [formGroup]="form" (ngSubmit)="submit()">
+    <nz-form-item>
+      <nz-alert *ngIf="failed" nzType="error" nzMessage="保存用户信息失败！" [nzShowIcon]="true"></nz-alert>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="username">用户名</nz-form-label>
+      <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+        <input nz-input formControlName="username" id="username" placeholder="请输入用户名">
+        <ng-container *ngIf="email.dirty && email.errors">
+          <nz-form-explain *ngIf="username.errors.required">请输入用户名！</nz-form-explain>
+          <nz-form-explain *ngIf="username.errors.minlength">用户名必须为2到20个字符！</nz-form-explain>
+          <nz-form-explain *ngIf="username.errors.maxlength">用户名必须为2到20个字符！</nz-form-explain>
+          <nz-form-explain *ngIf="username.errors.pattern">用户名只能是小写英文字母或数字！</nz-form-explain>
+          <nz-form-explain *ngIf="username.errors.unique">用户名已被注册！</nz-form-explain>
+        </ng-container>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzXs="24" nzSm="7" nzFor="password">密码</nz-form-label>
+      <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+        <input nz-input type="password" formControlName="password" id="password" placeholder="请输入密码">
+        <nz-form-explain *ngIf="password.errors">密码最多20个字符！</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzXs="24" nzSm="7" nzFor="nickname">昵称</nz-form-label>
+      <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+        <input nz-input formControlName="nickname" id="nickname" placeholder="请输入昵称">
+        <nz-form-explain *ngIf="nickname.errors">昵称最多20个字符！</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzXs="24" nzSm="7" nzFor="name">姓名</nz-form-label>
+      <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+        <input nz-input formControlName="name" id="name" placeholder="请输入姓名">
+        <nz-form-explain *ngIf="name.errors">姓名最多20个字符！</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzXs="24" nzSm="7" nzFor="email">邮箱</nz-form-label>
+      <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+        <input nz-input formControlName="email" id="email" placeholder="请输入邮箱地址">
+        <ng-container *ngIf="email.dirty && email.errors">
+          <nz-form-explain *ngIf="email.errors.required">请输入邮箱地址！</nz-form-explain>
+          <nz-form-explain *ngIf="email.errors.maxlength">邮箱地址最多100个字符！</nz-form-explain>
+          <nz-form-explain *ngIf="email.errors.email">请输入正确的邮箱地址！</nz-form-explain>
+          <nz-form-explain *ngIf="email.errors.unique">邮箱地址已被注册！</nz-form-explain>
+        </ng-container>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzXs="24" nzSm="7" nzFor="phone">电话</nz-form-label>
+      <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+        <input nz-input formControlName="phone" id="phone" placeholder="请输入电话号码">
+        <ng-container *ngIf="phone.dirty && phone.errors">
+          <nz-form-explain *ngIf="phone.errors.maxlength">电话号码最多20个字符！</nz-form-explain>
+          <nz-form-explain *ngIf="phone.errors.unique">电话号码已被注册！</nz-form-explain>
+        </ng-container>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label nzXs="24" nzSm="7" nzFor="authorities">权限</nz-form-label>
+      <nz-form-control nzXs="24" nzSm="12" nzMd="10">
+        <nz-select nzMode="multiple" nzPlaceHolder="请选择权限" formControlName="authorities">
+          <nz-option nzLabel="用户" nzValue="ROLE_USER"></nz-option>
+          <nz-option nzLabel="管理员" nzValue="ROLE_ADMIN"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 10, offset: 7 }">
+        <label nz-checkbox formControlName="enabled" id="enabled">可用</label>
+        <label nz-checkbox formControlName="activated" id="activated">激活</label>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 10, offset: 7 }">
+        <button nz-button nzType="primary" type="submit" [nzLoading]="submitting">保存用户信息</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-card>

@@ -79,6 +79,10 @@
       </nz-col>
     </nz-row>
   </form>
+  <button nz-button [routerLink]="['/users', '.']" [nzType]="'primary'">
+    <i class="anticon anticon-plus"></i>
+    <span>新建</span>
+  </button>
   <nz-table #userTable [nzData]="data.content" [nzFrontPagination]="false" [nzShowSizeChanger]="true" [nzLoading]="loading" [nzTotal]="data.totalElements"
             [(nzPageIndex)]="q.page" (nzPageIndexChange)="load()" [(nzPageSize)]="q.size" (nzPageSizeChange)="load()" [nzSize]="'middle'">
     <thead (nzSortChange)="sort($event)" nzSingleSort>
