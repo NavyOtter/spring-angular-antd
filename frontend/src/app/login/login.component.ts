@@ -4,6 +4,7 @@ import { FormBuilder,FormGroup,Validators} from '@angular/forms';
 
 import { AuthService } from '../core/auth/auth.service';
 import { StateStorageService } from '../core/auth/state-storage.service';
+import { SettingsService } from '../core/settings/settings.service';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
               private formBuilder: FormBuilder,
               private authService: AuthService,
-              private stateStorageService: StateStorageService) {
+              private stateStorageService: StateStorageService,
+              public settings: SettingsService) {
   }
 
   ngOnInit(): void {
