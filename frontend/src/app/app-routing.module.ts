@@ -59,6 +59,14 @@ export const routes: Routes = [
         }
       },
       {
+        path: 'profile',
+        loadChildren: './profile/profile.module#ProfileModule',
+        canLoad: [AuthGuard],
+        data: {
+          authorities: ['ROLE_USER']
+        }
+      },
+      {
         path: 'users',
         loadChildren: './user/user.module#UserModule',
         canLoad: [AuthGuard],

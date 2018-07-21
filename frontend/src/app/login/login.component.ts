@@ -13,8 +13,8 @@ import { StateStorageService } from '../core/auth/state-storage.service';
 export class LoginComponent implements OnInit {
 
   form: FormGroup;
-  failed: boolean;
-  loading: boolean;
+  failed = false;
+  submitting = false;
 
   constructor(private router: Router,
               private formBuilder: FormBuilder,
@@ -41,11 +41,11 @@ export class LoginComponent implements OnInit {
       this.form.controls[ i ].updateValueAndValidity();
     }
     if (this.form.valid) {
-      this.loading = true;
+      this.submitting = true;
       this.failed = false;
       this.authService.login(this.form.value).subscribe(
         (data) => {
-          this.loading = false;
+          this.submitting = false;
           const redirect = this.stateStorageService.getUrl();
           if (redirect) {
             this.stateStorageService.storeUrl(null);
@@ -57,11 +57,9 @@ export class LoginComponent implements OnInit {
 
         },
         (error) => {
-          this.loading = false;
+          this.submitting = false;
           this.failed = true;
-
         }
-
       );
     }
   }

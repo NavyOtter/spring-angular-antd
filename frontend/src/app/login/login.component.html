@@ -1,4 +1,4 @@
-<nz-card class="login-card" nzTitle="用户登录">
+<nz-card class="login-card" [nzBordered]="false" nzTitle="用户登录">
 
   <form class="login-form" nz-form [formGroup]="form" (ngSubmit)="submitForm()" role="form">
     <nz-form-item>
@@ -26,7 +26,7 @@
           <span>记住密码</span>
         </label>
         <a class="login-form-forgot" routerLink="/forgot">找回密码</a>
-        <button nz-button class="login-form-button" [nzLoading]="loading" [nzType]="'primary'">登录</button>
+        <button nz-button class="login-form-button" [nzLoading]="submitting" [nzType]="'primary'">登录</button>
         <a class="login-form-register" routerLink="/register">注册用户</a>
       </nz-form-control>
     </nz-form-item>
