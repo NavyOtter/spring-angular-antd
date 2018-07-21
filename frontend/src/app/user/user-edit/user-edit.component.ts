@@ -163,9 +163,39 @@ export class UserEditComponent implements OnInit, OnDestroy {
     if (this.form.valid) {
       this.submitting = true;
       this.failed = false;
+      const data = Object.assign({}, this.user, this.form.value);
+      if (this.user.username) {
+        this.userService.update(data).subscribe(
+          (user) => {
+            this.submitting = false;
+            this.msg.success(`用户信息保存成功！`);
+            this.user = user;
+            this.form.patchValue(user);
+          },
+          () => {
+            this.submitting = false;
+            this.failed = true;
+            this.msg.error(`用户信息保存失败！`);
+
+          }
+        );
+      } else {
+        this.userService.create(data).subscribe(
+          (user) => {
+            this.submitting = false;
+            this.msg.success(`用户信息保存成功！`);
+            this.user = user;
+            this.form.patchValue(user);
+          },
+          () => {
+            this.submitting = false;
+            this.failed = true;
+            this.msg.error(`用户信息保存失败！`);
+
+          }
+        );
+      }
 
     }
   }
 }
-
-
