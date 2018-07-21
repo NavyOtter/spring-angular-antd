@@ -37,6 +37,27 @@ export class ProfileComponent implements OnInit {
         null,
         [
           Validators.required,
+          Validators.maxLength(20),
+        ]
+      ],
+      name: [
+        null,
+        [
+          Validators.required,
+          Validators.maxLength(20),
+        ]
+      ],
+      email: [
+        null,
+        [
+          Validators.email,
+          Validators.maxLength(100),
+        ]
+      ],
+      phone: [
+        null,
+        [
+          Validators.maxLength(20),
         ]
       ]
     });
@@ -62,6 +83,18 @@ export class ProfileComponent implements OnInit {
     return this.form.controls.nickname;
   }
 
+  get name() {
+    return this.form.controls.name;
+  }
+
+  get email() {
+    return this.form.controls.email;
+  }
+
+  get phone() {
+    return this.form.controls.phone;
+  }
+
   submit() {
     for (const i in this.form.controls) {
       this.form.controls[i].markAsDirty();
@@ -74,8 +107,10 @@ export class ProfileComponent implements OnInit {
         () => {
           this.submitting = false;
           this.msg.success(`个人信息更新成功！`);
-          this.form.reset();
-
+          this.authService.getPrincipal(true).subscribe(principal => {
+            this.user = Object.assign({}, principal);
+            this.form.patchValue(this.user);
+          });
         },
         () => {
           this.submitting = false;
