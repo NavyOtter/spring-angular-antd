@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
+import { ViserModule } from 'viser-ng';
 
 @NgModule({
   imports: [
@@ -13,6 +14,7 @@ import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
     FormsModule,
     ReactiveFormsModule,
     RouterModule,
+    ViserModule,
     NgZorroAntdModule
 
   ],
@@ -26,6 +28,7 @@ import { HasAnyAuthorityDirective } from './auth/has-any-authority.directive';
     ReactiveFormsModule,
     RouterModule,
     NgZorroAntdModule,
+    ViserModule,
     HasAnyAuthorityDirective
   ],
   providers: [

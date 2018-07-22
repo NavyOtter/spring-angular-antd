@@ -123,13 +123,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
       .antMatchers("/api/account/reset-password/finish").permitAll()
       .antMatchers("/api/profile-info").permitAll()
       .antMatchers("/api/**").authenticated()
-      .antMatchers("/actuator/health").permitAll()
-      .antMatchers("/actuator/info").permitAll()
-      .antMatchers("/actuator/**").hasAuthority(AuthorityConstants.ADMIN)
+      .antMatchers("/actuator/**").permitAll()
       .antMatchers("/v2/api-docs").permitAll()
       .antMatchers("/swagger-resources/**").permitAll()
       .antMatchers("/webjars/**").permitAll()
-      .antMatchers("/swagger-ui.html").hasAuthority(AuthorityConstants.ADMIN)
 
       .and()
 
