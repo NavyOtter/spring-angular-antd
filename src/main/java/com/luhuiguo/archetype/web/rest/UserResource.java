@@ -1,9 +1,11 @@
 package com.luhuiguo.archetype.web.rest;
 
+import com.google.common.collect.ImmutableMap;
 import com.luhuiguo.archetype.domain.User;
 import com.luhuiguo.archetype.domain.criteria.UserCriteria;
 import com.luhuiguo.archetype.mapper.UserMapper;
 import com.luhuiguo.archetype.model.UserModel;
+import com.luhuiguo.archetype.model.Validation;
 import com.luhuiguo.archetype.repository.UserRepository;
 import com.luhuiguo.archetype.security.AuthorityConstants;
 import com.luhuiguo.archetype.service.MailService;
@@ -17,6 +19,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
@@ -88,7 +91,7 @@ public class UserResource {
       throw new EmailAlreadyUsedException();
     } else {
       User newUser = userService.createUser(userModel);
-      mailService.sendCreationEmail(newUser);
+      //mailService.sendCreationEmail(newUser);
       return ResponseEntity.created(new URI("/api/users/" + newUser.getUsername()))
         .headers(HeaderUtils.createAlert("userManagement.created", newUser.getUsername()))
         .body(userMapper.entityToModel(newUser));
@@ -178,5 +181,14 @@ public class UserResource {
     return ResponseEntity.ok().headers(HeaderUtils.createAlert("userManagement.deleted", id.toString()))
       .build();
   }
+
+
+  @PostMapping(value = "/validators/username-not-taken")
+  public Map<String,Boolean> validateUsernameNotTaken(@RequestBody Validation validation) {
+    return userRepository.findOneByUsername(validation.getValue())
+      .filter(u -> validation.getId() == null ? true : !validation.getId().equals(u.getId()))
+      .map(user -> ImmutableMap.of("unique", true)).orElse(null);
+  }
+
 }
 

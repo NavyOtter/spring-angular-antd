@@ -20,20 +20,25 @@
       <nz-form-label nzXs="24" nzSm="7" nzRequired nzFor="username">用户名</nz-form-label>
       <nz-form-control nzXs="24" nzSm="12" nzMd="10">
         <input nz-input formControlName="username" id="username" placeholder="请输入用户名">
-        <ng-container *ngIf="email.dirty && email.errors">
-          <nz-form-explain *ngIf="username.errors.required">请输入用户名！</nz-form-explain>
-          <nz-form-explain *ngIf="username.errors.minlength">用户名必须为2到20个字符！</nz-form-explain>
-          <nz-form-explain *ngIf="username.errors.maxlength">用户名必须为2到20个字符！</nz-form-explain>
-          <nz-form-explain *ngIf="username.errors.pattern">用户名只能是小写英文字母或数字！</nz-form-explain>
-          <nz-form-explain *ngIf="username.errors.unique">用户名已被注册！</nz-form-explain>
-        </ng-container>
+        <nz-form-explain *ngIf="username.dirty && username.errors || username.pending">
+          <ng-container *ngIf="username.pending">正在校验……</ng-container>
+          <ng-container *ngIf="username.errors.required">请输入用户名！</ng-container>
+          <ng-container *ngIf="username.errors.minlength">用户名必须为2到20个字符！</ng-container>
+          <ng-container *ngIf="username.errors.maxlength">用户名必须为2到20个字符！</ng-container>
+          <ng-container *ngIf="username.errors.pattern">用户名只能是小写英文字母或数字！</ng-container>
+          <ng-container *ngIf="username.errors.duplicated">用户名已被注册！</ng-container>
+        </nz-form-explain>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label nzXs="24" nzSm="7" nzFor="password">密码</nz-form-label>
+      <nz-form-label nzXs="24" nzSm="7" [nzRequired]="!user?.id" nzFor="password">密码</nz-form-label>
       <nz-form-control nzXs="24" nzSm="12" nzMd="10">
         <input nz-input type="password" formControlName="password" id="password" placeholder="请输入密码">
-        <nz-form-explain *ngIf="password.errors">密码最多20个字符！</nz-form-explain>
+        <ng-container *ngIf="password.dirty && password.errors">
+          <nz-form-explain *ngIf="password.errors.required">请输入密码！</nz-form-explain>
+          <nz-form-explain *ngIf="password.errors.minlength">密码必须为2到20个字符！</nz-form-explain>
+          <nz-form-explain *ngIf="password.errors.maxlength">密码必须为2到20个字符！</nz-form-explain>
+        </ng-container>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
@@ -58,7 +63,7 @@
           <nz-form-explain *ngIf="email.errors.required">请输入邮箱地址！</nz-form-explain>
           <nz-form-explain *ngIf="email.errors.maxlength">邮箱地址最多100个字符！</nz-form-explain>
           <nz-form-explain *ngIf="email.errors.email">请输入正确的邮箱地址！</nz-form-explain>
-          <nz-form-explain *ngIf="email.errors.unique">邮箱地址已被注册！</nz-form-explain>
+          <nz-form-explain *ngIf="email.errors.duplicated">邮箱地址已被注册！</nz-form-explain>
         </ng-container>
       </nz-form-control>
     </nz-form-item>
@@ -68,7 +73,7 @@
         <input nz-input formControlName="phone" id="phone" placeholder="请输入电话号码">
         <ng-container *ngIf="phone.dirty && phone.errors">
           <nz-form-explain *ngIf="phone.errors.maxlength">电话号码最多20个字符！</nz-form-explain>
-          <nz-form-explain *ngIf="phone.errors.unique">电话号码已被注册！</nz-form-explain>
+          <nz-form-explain *ngIf="phone.errors.duplicated">电话号码已被注册！</nz-form-explain>
         </ng-container>
       </nz-form-control>
     </nz-form-item>
@@ -90,6 +95,7 @@
     <nz-form-item>
       <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 10, offset: 7 }">
         <button nz-button nzType="primary" type="submit" [nzLoading]="submitting">保存用户信息</button>
+        <button nz-button [routerLink]="['/users']" style="margin-left: 16px;">返回</button>
       </nz-form-control>
     </nz-form-item>
   </form>

@@ -16,6 +16,10 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  validateUsernameNotTaken(username: String, id?: number): Observable<any> {
+    return this.http.post(`api/validators/username-not-taken`,{ value: username, id: id });
+  }
+
   get(id: number): Observable<User> {
     return this.http.get(`${this.resourceUrl}/${id}`);
   }

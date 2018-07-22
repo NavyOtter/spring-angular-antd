@@ -14,6 +14,8 @@ import { UserService } from '../../core/user/user.service';
 })
 export class UserListComponent implements OnInit {
 
+  expandForm = false;
+
   loading = false;
 
   q = <UserCriteria>{

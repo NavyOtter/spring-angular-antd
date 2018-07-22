@@ -3,6 +3,8 @@ package com.luhuiguo.archetype.service;
 import com.luhuiguo.archetype.config.ApplicationProperties;
 import com.luhuiguo.archetype.domain.User;
 import java.nio.charset.StandardCharsets;
+import java.util.Locale;
+import javax.mail.internet.MimeMessage;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.MessageSource;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -11,9 +13,6 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
-
-import javax.mail.internet.MimeMessage;
-import java.util.Locale;
 
 @Slf4j
 @Service
@@ -41,14 +40,16 @@ public class MailService {
   }
 
   @Async
-  public void sendEmail(String to, String subject, String content, boolean isMultipart, boolean isHtml) {
+  public void sendEmail(String to, String subject, String content, boolean isMultipart,
+    boolean isHtml) {
     log.debug("Send email[multipart '{}' and html '{}'] to '{}' with subject '{}' and content={}",
       isMultipart, isHtml, to, subject, content);
 
     // Prepare message using a Spring helper
     MimeMessage mimeMessage = javaMailSender.createMimeMessage();
     try {
-      MimeMessageHelper message = new MimeMessageHelper(mimeMessage, isMultipart, StandardCharsets.UTF_8.name());
+      MimeMessageHelper message = new MimeMessageHelper(mimeMessage, isMultipart,
+        StandardCharsets.UTF_8.name());
       message.setTo(to);
       message.setFrom(applicationProperties.getMail().getFrom());
       message.setSubject(subject);
@@ -66,7 +67,13 @@ public class MailService {
 
   @Async
   public void sendEmailFromTemplate(User user, String templateName, String titleKey) {
-    Locale locale = Locale.forLanguageTag(user.getLangKey());
+    Locale locale = Locale.getDefault();
+    try {
+      locale = Locale.forLanguageTag(user.getLangKey());
+    } catch (Exception e) {
+      log.warn(e.getMessage(), e);
+    }
+
     Context context = new Context(locale);
     context.setVariable(USER, user);
     context.setVariable(BASE_URL, applicationProperties.getMail().getBaseUrl());

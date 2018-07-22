@@ -1,11 +1,21 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidationErrors,
+  Validators,
+  AsyncValidatorFn,
+  FormControl
+} from '@angular/forms';
 
 import { NzMessageService } from 'ng-zorro-antd';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription, Observer } from 'rxjs';
+
 import { UserService } from '../../core/user/user.service';
 import { User } from '../../core/user/user';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
 
 
 @Component({
@@ -39,13 +49,15 @@ export class UserEditComponent implements OnInit, OnDestroy {
           Validators.required,
           Validators.minLength(2),
           Validators.maxLength(20),
-          Validators.pattern(/^[a-z0-9]*$/)
+          Validators.pattern(/^[a-z0-9]*$/),
+          //this.usernameAsyncValidator
         ]
       ],
       password: [
         null,
         [
-          Validators.minLength(6)
+          Validators.minLength(6),
+          Validators.maxLength(20)
         ]
       ],
       nickname: [
@@ -74,7 +86,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
         ]
       ],
       authorities: [
-        null,
+        ['ROLE_USER'],
         []
       ],
       enabled: [
@@ -96,15 +108,40 @@ export class UserEditComponent implements OnInit, OnDestroy {
   }
 
   load(id: any) {
+
     if (Number.isNaN(id)) {
       this.user = <User>{};
+      // this.username.setValidators([
+      //   Validators.required,
+      //   Validators.minLength(2),
+      //   Validators.maxLength(20),
+      //   Validators.pattern(/^[a-z0-9]*$/),
+      //   existingUsernameValidator(this.userService)
+      // ]);
+      this.password.setValidators([
+        Validators.required,
+        Validators.minLength(6),
+        Validators.maxLength(20)
+      ]);
     } else {
+      // this.username.setValidators([
+      //   Validators.required,
+      //   Validators.minLength(2),
+      //   Validators.maxLength(20),
+      //   Validators.pattern(/^[a-z0-9]*$/),
+      //   existingUsernameValidator(this.userService, id)
+      // ]);
+      this.password.setValidators([
+        Validators.minLength(6),
+        Validators.maxLength(20)
+      ]);
       this.loading = true;
       this.userService.get(id).subscribe(
         (user) => {
           this.loading = false;
           this.user = user;
           this.form.patchValue(user);
+
         },
         (error) => {
           this.loading = false;
@@ -113,6 +150,28 @@ export class UserEditComponent implements OnInit, OnDestroy {
         });
     }
   }
+
+  // usernameAsyncValidator = (control: FormControl) => Observable.create((observer: Observer<ValidationErrors>) => {
+  //   setTimeout(() => {
+  //     if (control.value === 'test') {
+  //       observer.next({ error: true, duplicated: true });
+  //     } else {
+  //       observer.next(null);
+  //     }
+  //     observer.complete();
+  //   }, 1000);
+  // });
+
+  usernameAsyncValidator = (control: FormControl) => new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (control.value === 'test') {
+        resolve({ error: true, duplicated: true });
+      } else {
+        resolve(null);
+      }
+
+    }, 1000);
+  });
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -155,6 +214,8 @@ export class UserEditComponent implements OnInit, OnDestroy {
     return this.form.controls.activated;
   }
 
+
+
   submit() {
     for (const i in this.form.controls) {
       this.form.controls[i].markAsDirty();
@@ -164,7 +225,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
       this.submitting = true;
       this.failed = false;
       const data = Object.assign({}, this.user, this.form.value);
-      if (this.user.username) {
+      if (this.user.id) {
         this.userService.update(data).subscribe(
           (user) => {
             this.submitting = false;
