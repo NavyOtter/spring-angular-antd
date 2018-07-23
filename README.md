@@ -3,10 +3,7 @@
 ## Usage
 
 ```
-mvn archetype:generate \
-    -DarchetypeGroupId=com.luhuiguo.archetypes \
-    -DarchetypeArtifactId=spring-angular-antd-archetype \
-    -DarchetypeVersion=${archetype.version}
+mvn archetype:generate -Dfilter=com.luhuiguo.archetypes:spring-angular-antd-archetype
 ```
 
 ## Links
