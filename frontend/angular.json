@@ -147,5 +147,10 @@
     "@schematics/angular:service": {
       "spec": false
     }
+  },
+  "cli": {
+    "warnings": {
+      "typescriptMismatch": false
+    }
   }
 }
