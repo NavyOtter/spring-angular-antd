@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.luhuiguo.archetypes</groupId>
   <artifactId>spring-angular-antd</artifactId>
-  <version>0.3.0</version>
+  <version>0.3.1</version>
   <packaging>war</packaging>
   <parent>
     <groupId>org.springframework.boot</groupId>
@@ -42,7 +42,7 @@
     <frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
     <dockerfile-maven-plugin.version>1.4.3</dockerfile-maven-plugin.version>
     <!-- Librairies versions -->
-    <hibernate.version>5.3.2.Final</hibernate.version>
+    <hibernate.version>5.3.3.Final</hibernate.version>
     <guava.version>25.1-jre</guava.version>
     <mapstruct.version>1.2.0.Final</mapstruct.version>
     <jjwt.version>0.9.1</jjwt.version>
@@ -52,7 +52,7 @@
     <node.version>v10.7.0</node.version>
     <!-- Spring Profile-->
     <spring.profiles.active>dev</spring.profiles.active>
-    <docker.image.prefix>repo.gildata.com/gildata</docker.image.prefix>
+    <docker.image.prefix>luhuiguo</docker.image.prefix>
   </properties>
   <distributionManagement>
     <snapshotRepository>
