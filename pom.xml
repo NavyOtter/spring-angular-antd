@@ -49,7 +49,7 @@
     <problem-spring-web.version>0.23.0</problem-spring-web.version>
     <springfox.version>2.9.2</springfox.version>
     <logstash-logback-encoder.version>5.1</logstash-logback-encoder.version>
-    <node.version>v10.7.0</node.version>
+    <node.version>v10.8.0</node.version>
     <!-- Spring Profile-->
     <spring.profiles.active>dev</spring.profiles.active>
     <docker.image.prefix>luhuiguo</docker.image.prefix>
