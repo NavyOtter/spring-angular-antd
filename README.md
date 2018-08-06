@@ -1,7 +1,7 @@
 Spring Boot + Angular + Ant Design Archetype
 ==========
 
-Spring-Boot 2 + Angular 6 + Ant Design 脚手架
+Spring-Boot 2 + Angular 6 + Ant Design 脚手架
 
 # 快速开始
 
@@ -10,7 +10,7 @@ Spring-Boot 2 + Angular 6 + Ant Design 脚手架
 ```
 mvn archetype:generate -Dfilter=com.luhuiguo.archetypes:spring-angular-antd-archetype
 ```
-按提示输入，即可生成项目。
+按提示输入，即可生成项目。
 
 ## 运行
 
