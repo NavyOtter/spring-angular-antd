@@ -1,12 +1,14 @@
-# Spring Boot + Angular + Ant Design Archetype
+Spring Boot + Angular + Ant Design Archetype
+==========
 
-## Usage
+# Usage
 
 ```
 mvn archetype:generate -Dfilter=com.luhuiguo.archetypes:spring-angular-antd-archetype
 ```
 
-## Links
+
+# Links
 * [Spring Boot](https://spring.io/projects/spring-boot)
 * [Angular](https://angular.io/)
 * [Angular CLI](https://cli.angular.io/)
