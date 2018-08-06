@@ -45,8 +45,28 @@ npm start
 http://localhost:4200
 ```
 访问前端页面，这时对前端页面的修改，会自动刷新浏览器页面。
-
-
+前端通过 **proxy.conf.json** 
+```json
+{
+  "/api": {
+    "target": "http://localhost:8080",
+    "secure": false
+  },
+  "/actuator": {
+    "target": "http://localhost:8080",
+    "secure": false
+  },
+  "/webjars": {
+    "target": "http://localhost:8080",
+    "secure": false
+  },
+  "/v2/api-docs": {
+    "target": "http://localhost:8080",
+    "secure": false
+  }
+}
+```
+把对应后台请求转到后端
 
 # 相关链接
 * [Spring Boot](https://spring.io/projects/spring-boot)
