@@ -1,6 +1,8 @@
 Spring Boot + Angular + Ant Design Archetype
 ==========
 
+Spring-Boot 2 + Angular 6 + Ant Design 脚手架
+
 # 快速开始
 
 ## 创建项目
@@ -21,7 +23,7 @@ mvn spring-boot:run
 http://localhost:8080
 ```
 
-如果在开发过程中，需要启用livereload，前后端可以分别启动
+如果在开发过程中，需要启用live-reload，前后端可以分别启动
 
 ```
 mvn spring-boot:run -Dskip.npm
@@ -36,6 +38,8 @@ npm start
 http://localhost:4200
 ```
 访问前端页面，这时对前端页面的修改，会自动刷新浏览器页面。
+
+
 
 # 相关链接
 * [Spring Boot](https://spring.io/projects/spring-boot)
