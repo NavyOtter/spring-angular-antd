@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.luhuiguo.archetypes</groupId>
   <artifactId>spring-angular-antd</artifactId>
-  <version>0.4.0-SNAPSHOT</version>
+  <version>0.4.0</version>
   <packaging>war</packaging>
   <parent>
     <groupId>org.springframework.boot</groupId>
