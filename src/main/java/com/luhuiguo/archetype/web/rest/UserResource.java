@@ -187,7 +187,7 @@ public class UserResource {
   public Map<String,Boolean> validateUsernameNotTaken(@RequestBody Validation validation) {
     return userRepository.findOneByUsername(validation.getValue())
       .filter(u -> validation.getId() == null ? true : !validation.getId().equals(u.getId()))
-      .map(user -> ImmutableMap.of("unique", true)).orElse(null);
+      .map(user -> ImmutableMap.of("duplicated", true)).orElse(null);
   }
 
 }

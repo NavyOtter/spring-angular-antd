@@ -49,8 +49,10 @@ export class UserEditComponent implements OnInit, OnDestroy {
           Validators.required,
           Validators.minLength(2),
           Validators.maxLength(20),
-          Validators.pattern(/^[a-z0-9]*$/),
-          //this.usernameAsyncValidator
+          Validators.pattern(/^[a-z0-9]*$/)
+        ],
+        [
+          this.usernameAsyncValidator
         ]
       ],
       password: [
@@ -151,27 +153,8 @@ export class UserEditComponent implements OnInit, OnDestroy {
     }
   }
 
-  // usernameAsyncValidator = (control: FormControl) => Observable.create((observer: Observer<ValidationErrors>) => {
-  //   setTimeout(() => {
-  //     if (control.value === 'test') {
-  //       observer.next({ error: true, duplicated: true });
-  //     } else {
-  //       observer.next(null);
-  //     }
-  //     observer.complete();
-  //   }, 1000);
-  // });
+  usernameAsyncValidator = (control: FormControl) => this.userService.validateUsernameNotTaken(control.value, this.user.id);
 
-  usernameAsyncValidator = (control: FormControl) => new Promise((resolve, reject) => {
-    setTimeout(() => {
-      if (control.value === 'test') {
-        resolve({ error: true, duplicated: true });
-      } else {
-        resolve(null);
-      }
-
-    }, 1000);
-  });
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

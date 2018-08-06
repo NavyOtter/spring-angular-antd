@@ -21,12 +21,12 @@
       <nz-form-control nzXs="24" nzSm="12" nzMd="10">
         <input nz-input formControlName="username" id="username" placeholder="请输入用户名">
         <nz-form-explain *ngIf="username.dirty && username.errors || username.pending">
-          <ng-container *ngIf="username.pending">正在校验……</ng-container>
           <ng-container *ngIf="username.errors.required">请输入用户名！</ng-container>
           <ng-container *ngIf="username.errors.minlength">用户名必须为2到20个字符！</ng-container>
           <ng-container *ngIf="username.errors.maxlength">用户名必须为2到20个字符！</ng-container>
           <ng-container *ngIf="username.errors.pattern">用户名只能是小写英文字母或数字！</ng-container>
           <ng-container *ngIf="username.errors.duplicated">用户名已被注册！</ng-container>
+          <ng-container *ngIf="username.pending">正在校验……</ng-container>
         </nz-form-explain>
       </nz-form-control>
     </nz-form-item>

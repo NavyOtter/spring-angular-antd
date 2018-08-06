@@ -17,7 +17,7 @@ export class UserService {
   constructor(private http: HttpClient) { }
 
   validateUsernameNotTaken(username: String, id?: number): Observable<any> {
-    return this.http.post(`api/validators/username-not-taken`,{ value: username, id: id });
+    return this.http.post(`api/validators/username-not-taken`, { value: username, id: id });
   }
 
   get(id: number): Observable<User> {
