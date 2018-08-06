@@ -22,6 +22,13 @@ mvn spring-boot:run
 ```
 http://localhost:8080
 ```
+![login](doc/assets/login.png)
+
+登录用户密码为 admin:admin 或 user:user
+
+![dashboard](doc/assets/dashboard.png)
+
+![users](doc/assets/users.png)
 
 如果在开发过程中，需要启用live-reload，前后端可以分别启动
 
