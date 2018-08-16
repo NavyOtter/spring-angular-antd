@@ -40,16 +40,17 @@
     <!-- Maven plugins versions -->
     <maven-archetype-plugin.version>3.0.1</maven-archetype-plugin.version>
     <frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
-    <dockerfile-maven-plugin.version>1.4.3</dockerfile-maven-plugin.version>
+    <dockerfile-maven-plugin.version>1.4.4</dockerfile-maven-plugin.version>
+    <jib-maven-plugin.version>0.9.8</jib-maven-plugin.version>
     <!-- Librairies versions -->
-    <hibernate.version>5.3.3.Final</hibernate.version>
-    <guava.version>25.1-jre</guava.version>
+    <hibernate.version>5.3.5.Final</hibernate.version>
+    <guava.version>26.0-jre</guava.version>
     <mapstruct.version>1.2.0.Final</mapstruct.version>
-    <jjwt.version>0.9.1</jjwt.version>
+    <jjwt.version>0.10.5</jjwt.version>
     <problem-spring-web.version>0.23.0</problem-spring-web.version>
     <springfox.version>2.9.2</springfox.version>
-    <logstash-logback-encoder.version>5.1</logstash-logback-encoder.version>
-    <node.version>v10.8.0</node.version>
+    <logstash-logback-encoder.version>5.2</logstash-logback-encoder.version>
+    <node.version>v10.9.0</node.version>
     <!-- Spring Profile-->
     <spring.profiles.active>dev</spring.profiles.active>
     <docker.image.prefix>luhuiguo</docker.image.prefix>
@@ -212,9 +213,21 @@
     </dependency>
     <!-- JWT -->
     <dependency>
-      <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt</artifactId>
+       <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-api</artifactId>
       <version>${jjwt.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-impl</artifactId>
+      <version>${jjwt.version}</version>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>io.jsonwebtoken</groupId>
+      <artifactId>jjwt-jackson</artifactId>
+      <version>${jjwt.version}</version>
+      <scope>runtime</scope>
     </dependency>
     <!-- Liquibase -->
     <dependency>

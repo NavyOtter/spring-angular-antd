@@ -7,13 +7,16 @@ import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureAlgorithm;
-import io.jsonwebtoken.SignatureException;
+import io.jsonwebtoken.security.SignatureException;
 import io.jsonwebtoken.UnsupportedJwtException;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.stream.Collectors;
 import javax.annotation.PostConstruct;
+import javax.crypto.SecretKey;
+
+import io.jsonwebtoken.security.Keys;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -31,7 +34,7 @@ public class TokenProvider {
 
   private static final String AUTHORITIES_KEY = "auth";
 
-  private String secretKey;
+  private SecretKey secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS512);
 
   private long tokenValidityInMilliseconds;
 
@@ -45,8 +48,8 @@ public class TokenProvider {
 
   @PostConstruct
   public void init() {
-    this.secretKey =
-      applicationProperties.getSecurity().getAuthentication().getJwt().getSecret();
+//    this.secretKey =
+//      applicationProperties.getSecurity().getAuthentication().getJwt().getSecret();
 
     this.tokenValidityInMilliseconds =
       1000 * applicationProperties.getSecurity().getAuthentication().getJwt().getTokenValidityInSeconds();
@@ -70,7 +73,7 @@ public class TokenProvider {
     return Jwts.builder()
       .setSubject(authentication.getName())
       .claim(AUTHORITIES_KEY, authorities)
-      .signWith(SignatureAlgorithm.HS512, secretKey)
+      .signWith(secretKey)
       .setExpiration(validity)
       .compact();
   }
