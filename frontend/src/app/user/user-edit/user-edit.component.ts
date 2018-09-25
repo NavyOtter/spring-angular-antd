@@ -99,7 +99,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
         true,
         []
       ]
-    });
+    },{ updateOn: 'submit' });
     this.subscription = this.route.params.subscribe(
       (params) => {
         const id = +params['id'];
@@ -122,7 +122,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
       // ]);
       this.password.setValidators([
         Validators.required,
-        Validators.minLength(6),
+        Validators.minLength(2),
         Validators.maxLength(20)
       ]);
     } else {
@@ -202,7 +202,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
   submit() {
     for (const i in this.form.controls) {
       this.form.controls[i].markAsDirty();
-      this.form.controls[i].updateValueAndValidity();
+      // this.form.controls[i].updateValueAndValidity();
     }
     if (this.form.valid) {
       this.submitting = true;
