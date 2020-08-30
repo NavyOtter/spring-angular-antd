@@ -1,38 +1,38 @@
-<nz-card class="login-card" [nzBordered]="false" nzTitle="用户登录">
+<nz-card class="login-card" [nzBordered]="false" nzTitle="User login">
 
   <form class="login-form" nz-form [formGroup]="form" (ngSubmit)="submitForm()" role="form">
     <nz-form-item>
-      <nz-alert *ngIf="failed" nzType="error" nzMessage="用户名或密码错误！" [nzShowIcon]="true"
+      <nz-alert *ngIf="failed" nzType="error" nzMessage="Wrong Username or password!" [nzShowIcon]="true"
                 class="mb-lg"></nz-alert>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control>
         <nz-input-group nzPrefixIcon="anticon anticon-user">
-          <input type="text" nz-input formControlName="username" placeholder="用户名">
+          <input type="text" nz-input formControlName="username" placeholder="Username">
         </nz-input-group>
-        <nz-form-explain *ngIf="username.dirty && username.errors?.required">请输入用户名！
+        <nz-form-explain *ngIf="username.dirty && username.errors?.required">Please enter your username!
         </nz-form-explain>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control>
         <nz-input-group nzPrefixIcon="anticon anticon-lock">
-          <input type="password" nz-input formControlName="password" placeholder="密码">
+          <input type="password" nz-input formControlName="password" placeholder="Password">
         </nz-input-group>
-        <nz-form-explain *ngIf="password.dirty && password.errors?.required">请输入密码！
+        <nz-form-explain *ngIf="password.dirty && password.errors?.required">Please enter your password!
         </nz-form-explain>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control>
         <label nz-checkbox formControlName="rememberMe">
-          <span>记住密码</span>
+          <span>remember me</span>
         </label>
-        <a class="login-form-forgot" routerLink="/forgot">找回密码</a>
+        <a class="login-form-forgot" routerLink="/forgot">password reset</a>
         <button nz-button class="login-form-button" [nzLoading]="submitting"
-                [nzType]="'primary'">登录
+                [nzType]="'primary'">Send
         </button>
-        <a class="login-form-register" routerLink="/register">注册用户</a>
+        <a class="login-form-register" routerLink="/register">register user</a>
       </nz-form-control>
     </nz-form-item>
   </form>

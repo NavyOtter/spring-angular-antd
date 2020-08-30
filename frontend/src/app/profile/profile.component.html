@@ -1,58 +1,58 @@
 <div class="content__title">
   <nz-breadcrumb>
     <nz-breadcrumb-item>
-      <a [routerLink]="['/']">首页</a>
+      <a [routerLink]="['/']">Home page</a>
     </nz-breadcrumb-item>
     <nz-breadcrumb-item>
-      个人信息
+      Personal information
     </nz-breadcrumb-item>
   </nz-breadcrumb>
 </div>
-<nz-card [nzBordered]="false" nzTitle="个人信息" [nzLoading]="loading">
+<nz-card [nzBordered]="false" nzTitle="personal information" [nzLoading]="loading">
   <form nz-form [formGroup]="form" (ngSubmit)="submit()">
     <nz-form-item>
-      <nz-alert *ngIf="failed" nzType="error" nzMessage="更新个人信息失败！" [nzShowIcon]="true"></nz-alert>
+      <nz-alert *ngIf="failed" nzType="error" nzMessage="Failed to update personal information!" [nzShowIcon]="true"></nz-alert>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label nzXs="24" nzSm="7" nzFor="username">用户名</nz-form-label>
+      <nz-form-label nzXs="24" nzSm="7" nzFor="username">Username</nz-form-label>
       <nz-form-control nzXs="24" nzSm="12" nzMd="10">
         {{user.username}}
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label nzXs="24" nzSm="7" nzFor="nickname">昵称</nz-form-label>
+      <nz-form-label nzXs="24" nzSm="7" nzFor="nickname">nickname</nz-form-label>
       <nz-form-control nzXs="24" nzSm="12" nzMd="10">
-        <input nz-input formControlName="nickname" id="nickname" placeholder="请输入昵称">
-        <nz-form-explain *ngIf="nickname.errors">昵称最多20个字符！</nz-form-explain>
+        <input nz-input formControlName="nickname" id="nickname" placeholder="Please enter a nickname">
+        <nz-form-explain *ngIf="nickname.errors">The maximum nickname is 20 characters! </nz-form-explain>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label nzXs="24" nzSm="7" nzFor="name">姓名</nz-form-label>
+      <nz-form-label nzXs="24" nzSm="7" nzFor="name">Name</nz-form-label>
       <nz-form-control nzXs="24" nzSm="12" nzMd="10">
-        <input nz-input formControlName="name" id="name" placeholder="请输入姓名">
-        <nz-form-explain *ngIf="name.errors">姓名最多20个字符！</nz-form-explain>
+        <input nz-input formControlName="name" id="name" placeholder="Please enter your name">
+        <nz-form-explain *ngIf="name.errors">The name can be up to 20 characters! </nz-form-explain>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label nzXs="24" nzSm="7" nzFor="email">邮箱</nz-form-label>
+      <nz-form-label nzXs="24" nzSm="7" nzFor="email">Email</nz-form-label>
       <nz-form-control nzXs="24" nzSm="12" nzMd="10">
-        <input nz-input formControlName="email" id="email" placeholder="请输入邮箱地址">
+        <input nz-input formControlName="email" id="email" placeholder="Please enter your email address">
         <ng-container *ngIf="email.dirty && email.errors">
-          <nz-form-explain *ngIf="email.errors.maxlength">邮箱地址最多100个字符！</nz-form-explain>
-          <nz-form-explain *ngIf="email.errors.email">请输入正确的邮箱地址！</nz-form-explain>
+          <nz-form-explain *ngIf="email.errors.maxlength">The email address can be up to 100 characters! </nz-form-explain>
+          <nz-form-explain *ngIf="email.errors.email">Please enter the correct email address! </nz-form-explain>
         </ng-container>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-      <nz-form-label nzXs="24" nzSm="7" nzFor="phone">电话</nz-form-label>
+      <nz-form-label nzXs="24" nzSm="7" nzFor="phone">Phone</nz-form-label>
       <nz-form-control nzXs="24" nzSm="12" nzMd="10">
-        <input nz-input formControlName="phone" id="phone" placeholder="请输入电话号码">
-        <nz-form-explain *ngIf="phone.errors">电话号码最多20个字符！</nz-form-explain>
+        <input nz-input formControlName="phone" id="phone" placeholder="Please enter the phone number">
+        <nz-form-explain *ngIf="phone.errors">The phone number can be up to 20 characters! </nz-form-explain>
       </nz-form-control>
     </nz-form-item>
     <nz-form-item>
       <nz-form-control [nzXs]="{ span: 24, offset: 0 }" [nzSm]="{ span: 10, offset: 7 }">
-        <button nz-button nzType="primary" type="submit" [nzLoading]="submitting">更新个人信息</button>
+        <button nz-button nzType="primary" type="submit" [nzLoading]="submitting">Update personal information</button>
       </nz-form-control>
     </nz-form-item>
   </form>

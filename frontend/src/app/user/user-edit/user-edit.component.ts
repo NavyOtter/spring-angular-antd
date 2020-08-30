@@ -99,7 +99,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
         true,
         []
       ]
-    },{ updateOn: 'submit' });
+    });
     this.subscription = this.route.params.subscribe(
       (params) => {
         const id = +params['id'];
@@ -122,7 +122,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
       // ]);
       this.password.setValidators([
         Validators.required,
-        Validators.minLength(2),
+        Validators.minLength(6),
         Validators.maxLength(20)
       ]);
     } else {
@@ -202,7 +202,7 @@ export class UserEditComponent implements OnInit, OnDestroy {
   submit() {
     for (const i in this.form.controls) {
       this.form.controls[i].markAsDirty();
-      // this.form.controls[i].updateValueAndValidity();
+      this.form.controls[i].updateValueAndValidity();
     }
     if (this.form.valid) {
       this.submitting = true;
@@ -212,14 +212,14 @@ export class UserEditComponent implements OnInit, OnDestroy {
         this.userService.update(data).subscribe(
           (user) => {
             this.submitting = false;
-            this.msg.success(`用户信息保存成功！`);
+            this.msg.success(`User information is saved successfully!`);
             this.user = user;
             this.form.patchValue(user);
           },
           () => {
             this.submitting = false;
             this.failed = true;
-            this.msg.error(`用户信息保存失败！`);
+            this.msg.error(`Failed to save user information!`);
 
           }
         );
@@ -227,14 +227,14 @@ export class UserEditComponent implements OnInit, OnDestroy {
         this.userService.create(data).subscribe(
           (user) => {
             this.submitting = false;
-            this.msg.success(`用户信息保存成功！`);
+            this.msg.success(`User information is saved successfully!`);
             this.user = user;
             this.form.patchValue(user);
           },
           () => {
             this.submitting = false;
             this.failed = true;
-            this.msg.error(`用户信息保存失败！`);
+            this.msg.error(`Failed to save user information!`);
 
           }
         );

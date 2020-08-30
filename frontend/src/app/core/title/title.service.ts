@@ -18,27 +18,27 @@ export class TitleService {
               private title: Title,
               @Inject(DOCUMENT) private doc: any) { }
 
-  /** 设置分隔符 */
+  /** Set separator */
   set separator(value: string) {
     this._separator = value;
   }
 
-  /** 设置前缀 */
+  /** Set prefix */
   set prefix(value: string) {
     this._prefix = value;
   }
 
-  /** 设置后缀 */
+  /** Set suffix */
   set suffix(value: string) {
     this._suffix = value;
   }
 
-  /** 设置是否反转 */
+  /** Set whether to reverse */
   set reverse(value: boolean) {
     this._reverse = value;
   }
 
-  /** 设置默认标题名 */
+  /** Set the default title name */
   set default(value: string) {
     this._default = value;
   }

@@ -92,14 +92,14 @@ export class PasswordComponent implements OnInit {
       this.passwordService.save(this.oldPassword.value, this.password.value).subscribe(
         () => {
           this.submitting = false;
-          this.msg.success(`密码修改成功！`);
+          this.msg.success(`Password changed successfully!`);
           this.form.reset();
 
         },
         () => {
           this.submitting = false;
           this.failed = true;
-          this.msg.error(`密码修改失败！`);
+          this.msg.error(`Password modification failed!`);
 
         }
 

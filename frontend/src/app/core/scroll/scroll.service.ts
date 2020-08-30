@@ -14,9 +14,9 @@ export class ScrollService {
   ) {}
 
   /**
-   * 设置滚动条至指定元素
-   * @param element 指定元素，默认 `document.body`
-   * @param topOffset 偏移值，默认 `0`
+   * Set the scroll bar to the specified element
+   * @param element specifies the element, default `document.body`
+   * @param topOffset offset value, default `0`
    */
   scrollToElement(element?: Element, topOffset = 0) {
     if (!element) element = this.doc.body;
@@ -34,8 +34,8 @@ export class ScrollService {
   }
 
   /**
-   * 滚动至顶部
-   * @param topOffset 偏移值，默认 `0`
+   * Scroll to the top
+   * @param topOffset offset value, default `0`
    */
   scrollToTop(topOffset = 0) {
     this.scrollToElement(this.doc.body, topOffset);

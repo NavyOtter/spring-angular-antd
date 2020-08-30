@@ -66,7 +66,7 @@ export class ProfileComponent implements OnInit {
         this.loading = false;
       },
       (error) => {
-        this.msg.error('个人信息加载失败');
+        this.msg.error('Failed to load personal information');
         this.loading = false;
       }
     );
@@ -104,7 +104,7 @@ export class ProfileComponent implements OnInit {
       this.authService.updateAccount(this.form.value).subscribe(
         () => {
           this.submitting = false;
-          this.msg.success(`个人信息更新成功！`);
+          this.msg.success(`Personal information update successfully!`);
           this.authService.getPrincipal(true).subscribe(principal => {
             this.user = Object.assign({}, principal);
             this.form.patchValue(this.user);
@@ -113,8 +113,7 @@ export class ProfileComponent implements OnInit {
         () => {
           this.submitting = false;
           this.failed = true;
-          this.msg.error(`个人信息更新失败！`);
-
+          this.msg.error(`Personal information update failed!`);
         }
       );
     }

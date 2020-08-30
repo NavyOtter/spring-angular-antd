@@ -1,10 +1,10 @@
 <div class="content__title">
   <nz-breadcrumb>
     <nz-breadcrumb-item>
-      <a [routerLink]="['/']">首页</a>
+      <a [routerLink]="['/']">Home page</a>
     </nz-breadcrumb-item>
     <nz-breadcrumb-item>
-      用户管理
+      User Management
     </nz-breadcrumb-item>
   </nz-breadcrumb>
 </div>
@@ -14,86 +14,86 @@
     <nz-row [nzGutter]="{ md: 8, lg: 24, xl: 48 }">
       <nz-col nzMd="8" nzSm="24">
         <nz-form-item>
-          <nz-form-label nzFor="filter">关键词</nz-form-label>
+          <nz-form-label nzFor="filter">Keywords</nz-form-label>
           <nz-form-control>
-            <input nz-input [(ngModel)]="q.filter" name="filter" placeholder="请输入" id="filter">
+            <input nz-input [(ngModel)]="q.filter" name="filter" placeholder="Please enter" id="filter">
           </nz-form-control>
         </nz-form-item>
       </nz-col>
       <nz-col nzMd="8" nzSm="24">
         <nz-form-item>
-          <nz-form-label nzFor="activated">激活状态</nz-form-label>
+          <nz-form-label nzFor="activated">Activation status</nz-form-label>
           <nz-form-control>
-            <nz-select [(ngModel)]="q.activated" name="activated" id="activated" [nzPlaceHolder]="'请选择'" [nzAllowClear]="true">
-              <nz-option [nzLabel]="'已激活'" [nzValue]="true"></nz-option>
-              <nz-option [nzLabel]="'未激活'" [nzValue]="false"></nz-option>
+            <nz-select [(ngModel)]="q.activated" name="activated" id="activated" [nzPlaceHolder]="'Please select'" [nzAllowClear]="true">
+              <nz-option [nzLabel]="'Activated'" [nzValue]="true"></nz-option>
+              <nz-option [nzLabel]="'Not activated'" [nzValue]="false"></nz-option>
             </nz-select>
           </nz-form-control>
         </nz-form-item>
       </nz-col>
       <nz-col nzMd="8" nzSm="24" *ngIf="expandForm">
         <nz-form-item>
-          <nz-form-label nzFor="email">邮箱</nz-form-label>
+          <nz-form-label nzFor="email">Email</nz-form-label>
           <nz-form-control>
-            <input nz-input [(ngModel)]="q.email" name="email" placeholder="请输入" id="email">
+            <input nz-input [(ngModel)]="q.email" name="email" placeholder="Please enter" id="email">
           </nz-form-control>
         </nz-form-item>
       </nz-col>
       <nz-col nzMd="8" nzSm="24" *ngIf="expandForm">
         <nz-form-item>
-          <nz-form-label nzFor="username">用户名</nz-form-label>
+          <nz-form-label nzFor="username">User name</nz-form-label>
           <nz-form-control>
-            <input nz-input [(ngModel)]="q.username" name="username" placeholder="请输入" id="username">
+            <input nz-input [(ngModel)]="q.username" name="username" placeholder="Please enter" id="username">
           </nz-form-control>
         </nz-form-item>
       </nz-col>
       <nz-col nzMd="8" nzSm="24" *ngIf="expandForm">
         <nz-form-item>
-          <nz-form-label nzFor="enabled">可用状态</nz-form-label>
+          <nz-form-label nzFor="enabled">Availability status</nz-form-label>
           <nz-form-control>
-            <nz-select [(ngModel)]="q.enabled" name="enabled" id="enabled" [nzPlaceHolder]="'请选择'" [nzAllowClear]="true">
-              <nz-option [nzLabel]="'可用'" [nzValue]="true"></nz-option>
-              <nz-option [nzLabel]="'停用'" [nzValue]="false"></nz-option>
+            <nz-select [(ngModel)]="q.enabled" name="enabled" id="enabled" [nzPlaceHolder]="'Please select'" [nzAllowClear]="true">
+              <nz-option [nzLabel]="'Available'" [nzValue]="true"></nz-option>
+              <nz-option [nzLabel]="'Disable'" [nzValue]="false"></nz-option>
             </nz-select>
           </nz-form-control>
         </nz-form-item>
       </nz-col>
       <nz-col nzMd="8" nzSm="24" *ngIf="expandForm">
         <nz-form-item>
-          <nz-form-label nzFor="authority">权限</nz-form-label>
+          <nz-form-label nzFor="authority">Permissions</nz-form-label>
           <nz-form-control>
-            <nz-select [(ngModel)]="q.authority" name="authority" id="authority" [nzPlaceHolder]="'请选择'" [nzAllowClear]="true">
-              <nz-option [nzLabel]="'管理员'" [nzValue]="'ROLE_ADMIN'"></nz-option>
-              <nz-option [nzLabel]="'普通用户'" [nzValue]="'ROLE_USER'"></nz-option>
+            <nz-select [(ngModel)]="q.authority" name="authority" id="authority" [nzPlaceHolder]="'Please select'" [nzAllowClear]="true">
+              <nz-option [nzLabel]="'Administrator'" [nzValue]="'ROLE_ADMIN'"></nz-option>
+              <nz-option [nzLabel]="'common user'" [nzValue]="'ROLE_USER'"></nz-option>
             </nz-select>
           </nz-form-control>
         </nz-form-item>
       </nz-col>
-      <nz-col [nzSpan]="expandForm ? 24 : 8" [class.text-right]="expandForm" style="padding-top: 3px;">
-        <button nz-button type="submit" [nzType]="'primary'" [nzLoading]="loading">查询</button>
-        <button nz-button type="reset" (click)="clear()" class="mx-sm">重置</button>
+      <nz-col [nzSpan]="expandForm? 24: 8" [class.text-right]="expandForm" style="padding-top: 3px;">
+        <button nz-button type="submit" [nzType]="'primary'" [nzLoading]="loading">Query</button>
+        <button nz-button type="reset" (click)="clear()" class="mx-sm">Reset</button>
         <a (click)="expandForm=!expandForm">
-          {{expandForm ? '收起' : '展开'}}
+          {{expandForm?'Collapse':'Expand'}}
           <i class="anticon" [class.anticon-down]="!expandForm" [class.anticon-up]="expandForm"></i>
         </a>
       </nz-col>
     </nz-row>
   </form>
-  <button nz-button [routerLink]="['/users', '.']" [nzType]="'primary'">
+  <button nz-button [routerLink]="['/users','.']" [nzType]="'primary'">
     <i class="anticon anticon-plus"></i>
-    <span>新建</span>
+    <span>New</span>
   </button>
   <nz-table #userTable [nzData]="data.content" [nzFrontPagination]="false" [nzShowSizeChanger]="true" [nzLoading]="loading" [nzTotal]="data.totalElements"
             [(nzPageIndex)]="q.page" (nzPageIndexChange)="load()" [(nzPageSize)]="q.size" (nzPageSizeChange)="load()" [nzSize]="'middle'">
     <thead (nzSortChange)="sort($event)" nzSingleSort>
     <tr>
-      <th nzShowSort nzSortKey="username">标识</th>
-      <th nzShowSort nzSortKey="username">用户名</th>
-      <th nzShowSort nzSortKey="email">邮箱</th>
-      <th nzShowSort nzSortKey="activated">激活</th>
-      <th nzShowSort nzSortKey="enabled">可用</th>
-      <th nzShowSort nzSortKey="createdDate">创建时间</th>
-      <th>操作</th>
+      <th nzShowSort nzSortKey="username">Identification</th>
+      <th nzShowSort nzSortKey="username">User</th>
+      <th nzShowSort nzSortKey="email">Email</th>
+      <th nzShowSort nzSortKey="activated">activated</th>
+      <th nzShowSort nzSortKey="enabled">Available</th>
+      <th nzShowSort nzSortKey="createdDate">Created time</th>
+      <th>Operation</th>
 
     </tr>
     </thead>
@@ -103,19 +103,19 @@
       <td>{{data.username}}</td>
       <td>{{data.email}}</td>
       <td>
-        <nz-badge [nzStatus]="data.activated?'success':'error'" [nzText]="data.activated?'已激活':'未激活'"></nz-badge>
+        <nz-badge [nzStatus]="data.activated?'success':'error'" [nzText]="data.activated?'activated':'not activated'"></nz-badge>
       </td>
       <td>
-        <nz-badge [nzStatus]="data.enabled?'success':'error'" [nzText]="data.enabled?'可用':'停用'"></nz-badge>
+        <nz-badge [nzStatus]="data.enabled?'success':'error'" [nzText]="data.enabled?'Available':'Disabled'"></nz-badge>
       </td>
       <td>{{data.createdDate | date:'yyyy-MM-dd HH:mm'}}</td>
       <td>
-        <a [routerLink]="['/users', data.id]">编辑</a>
+        <a [routerLink]="['/users', data.id]">Edit</a>
         <nz-divider nzType="vertical"></nz-divider>
-        <nz-popconfirm *ngIf="data.id>3" [nzTitle]="'确认删除吗？'" [nzOkText]="'确定'" (nzOnConfirm)="delete(data)" [nzCancelText]="'取消'" (nzOnCancel)="showMsg('取消删除')">
-          <a nz-popconfirm>删除</a>
+        <nz-popconfirm *ngIf="data.id>3" [nzTitle]="'Are you sure to delete?'" [nzOkText]="'OK'" (nzOnConfirm)="delete(data)" [nzCancelText]=" 'Cancel'" (nzOnCancel)="showMsg('Cancel delete')">
+          <a nz-popconfirm>Delete</a>
         </nz-popconfirm>
-        <a *ngIf="data.id<=3" disabled>删除</a>
+        <a *ngIf="data.id<=3" disabled>delete</a>
       </td>
     </tr>
     </tbody>

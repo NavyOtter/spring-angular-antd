@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project
-  xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.luhuiguo.archetypes</groupId>
-  <artifactId>spring-angular-antd</artifactId>
-  <version>0.5.0-SNAPSHOT</version>
+  <groupId>navy.otter</groupId>
+  <artifactId>arbeitszeitentool</artifactId>
+  <version>1.0-SNAPSHOT</version>
   <packaging>war</packaging>
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.0.5.RELEASE</version>
-    <relativePath/>
+    <version>2.0.4.RELEASE</version>
   </parent>
-  <name>spring-angular-antd</name>
+  <name>arbeitszeitentool</name>
   <description>Spring Angular Ant Design Archetype</description>
-  <url>https://github.com/luhuiguo/spring-angular-antd</url>
+  <url>https://github.com/luhuiguo/arbeitszeitentool</url>
   <developers>
     <developer>
       <id>lhg</id>
@@ -40,17 +37,16 @@
     <!-- Maven plugins versions -->
     <maven-archetype-plugin.version>3.0.1</maven-archetype-plugin.version>
     <frontend-maven-plugin.version>1.6</frontend-maven-plugin.version>
-    <dockerfile-maven-plugin.version>1.4.4</dockerfile-maven-plugin.version>
-    <jib-maven-plugin.version>0.9.10</jib-maven-plugin.version>
+    <dockerfile-maven-plugin.version>1.4.3</dockerfile-maven-plugin.version>
     <!-- Librairies versions -->
-    <hibernate.version>5.3.6.Final</hibernate.version>
-    <guava.version>26.0-jre</guava.version>
+    <hibernate.version>5.3.3.Final</hibernate.version>
+    <guava.version>25.1-jre</guava.version>
     <mapstruct.version>1.2.0.Final</mapstruct.version>
-    <jjwt.version>0.10.5</jjwt.version>
+    <jjwt.version>0.9.1</jjwt.version>
     <problem-spring-web.version>0.23.0</problem-spring-web.version>
     <springfox.version>2.9.2</springfox.version>
-    <logstash-logback-encoder.version>5.2</logstash-logback-encoder.version>
-    <node.version>v10.11.0</node.version>
+    <logstash-logback-encoder.version>5.1</logstash-logback-encoder.version>
+    <node.version>v10.8.0</node.version>
     <!-- Spring Profile-->
     <spring.profiles.active>dev</spring.profiles.active>
     <docker.image.prefix>luhuiguo</docker.image.prefix>
@@ -213,21 +209,9 @@
     </dependency>
     <!-- JWT -->
     <dependency>
-       <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt-api</artifactId>
-      <version>${jjwt.version}</version>
-    </dependency>
-    <dependency>
       <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt-impl</artifactId>
+      <artifactId>jjwt</artifactId>
       <version>${jjwt.version}</version>
-      <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>io.jsonwebtoken</groupId>
-      <artifactId>jjwt-jackson</artifactId>
-      <version>${jjwt.version}</version>
-      <scope>runtime</scope>
     </dependency>
     <!-- Liquibase -->
     <dependency>
